@@ -15,6 +15,10 @@ import javax.swing.DefaultComboBoxModel;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import com.toedter.calendar.JDateChooser;
+
+import dto.LocalidadDTO;
+import dto.TipoContactoDTO;
 
 public class VentanaPersona extends JFrame 
 {
@@ -30,6 +34,9 @@ public class VentanaPersona extends JFrame
 	private JTextField textDepto;
 	private JTextField textMail;
 	private JTextField textPiso;
+	private JDateChooser dateChooser;
+	private JComboBox<LocalidadDTO> listaLocalidades;
+	private JComboBox <TipoContactoDTO> listaTipoContacto;
 
 	public VentanaPersona(Controlador controlador) 
 	{
@@ -37,14 +44,14 @@ public class VentanaPersona extends JFrame
 		this.controlador = controlador;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 626, 549);
+		setBounds(100, 100, 626, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 590, 489);
+		panel.setBounds(10, 11, 590, 416);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -68,7 +75,7 @@ public class VentanaPersona extends JFrame
 		
 		btnAgregarPersona = new JButton("Agregar");
 		btnAgregarPersona.addActionListener(this.controlador);
-		btnAgregarPersona.setBounds(456, 415, 107, 46);
+		btnAgregarPersona.setBounds(452, 326, 107, 46);
 		panel.add(btnAgregarPersona);
 		
 		textTelefono = new JTextField();
@@ -119,7 +126,7 @@ public class VentanaPersona extends JFrame
 		panel.add(lblTipoDeContacto);
 		
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
-		lblFechaDeNacimiento.setBounds(74, 269, 154, 14);
+		lblFechaDeNacimiento.setBounds(84, 263, 154, 14);
 		panel.add(lblFechaDeNacimiento);
 		
 		textDepto = new JTextField();
@@ -137,35 +144,126 @@ public class VentanaPersona extends JFrame
 		textPiso.setBounds(395, 104, 164, 20);
 		panel.add(textPiso);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));
-		comboBox.setToolTipText("");
-		comboBox.setBounds(395, 207, 164, 20);
-		panel.add(comboBox);
+		JComboBox listaTipoContacto = new JComboBox();
+		listaTipoContacto.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));
+		listaTipoContacto.setToolTipText("");
+		listaTipoContacto.setBounds(395, 207, 164, 20);
+		panel.add(listaTipoContacto);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
-		comboBox_1.setBounds(395, 152, 164, 20);
-		panel.add(comboBox_1);
+		JComboBox listaLocalidades = new JComboBox();
+		listaLocalidades.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
+		listaLocalidades.setBounds(395, 152, 164, 20);
+		panel.add(listaLocalidades);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBorder(new LineBorder(new Color(0, 0, 0)));
-		calendar.setBounds(74, 308, 184, 153);
-		panel.add(calendar);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(74, 294, 154, 20);
+		panel.add(dateChooser);
 		
 		this.setVisible(true);
 	}
-	
-	public JTextField getTxtNombre() 
-	{
+	public JTextField getTxtNombre() {
 		return txtNombre;
 	}
 
-	public JTextField getTxtTelefono() 
-	{
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+
+	public JTextField getTxtApellido() {
 		return txtApellido;
 	}
 
+
+	public void setTxtApellido(JTextField txtApellido) {
+		this.txtApellido = txtApellido;
+	}
+
+
+	public JTextField getTextTelefono() {
+		return textTelefono;
+	}
+
+
+	public void setTextTelefono(JTextField textTelefono) {
+		this.textTelefono = textTelefono;
+	}
+
+
+	public JTextField getTextCalle() {
+		return textCalle;
+	}
+
+
+	public void setTextCalle(JTextField textCalle) {
+		this.textCalle = textCalle;
+	}
+
+
+	public JTextField getTextAltura() {
+		return textAltura;
+	}
+
+
+	public void setTextAltura(JTextField textAltura) {
+		this.textAltura = textAltura;
+	}
+
+
+	public JTextField getTextDepto() {
+		return textDepto;
+	}
+
+
+	public void setTextDepto(JTextField textDepto) {
+		this.textDepto = textDepto;
+	}
+
+
+	public JTextField getTextMail() {
+		return textMail;
+	}
+
+
+	public void setTextMail(JTextField textMail) {
+		this.textMail = textMail;
+	}
+
+
+	public JTextField getTextPiso() {
+		return textPiso;
+	}
+
+
+	public void setTextPiso(JTextField textPiso) {
+		this.textPiso = textPiso;
+	}
+
+	public JDateChooser getDateChooser() {
+		return dateChooser;
+	}
+	public void setDateChooser(JDateChooser dateChooser) {
+		this.dateChooser = dateChooser;
+	}
+
+	public JComboBox<LocalidadDTO> getListaLocalidades() {
+		return listaLocalidades;
+	}
+	public void setListaLocalidades(JComboBox<LocalidadDTO> listaLocalidades) {
+		this.listaLocalidades = listaLocalidades;
+	}
+	public JComboBox<TipoContactoDTO> getListaTipoContacto() {
+		return listaTipoContacto;
+	}
+	public void setListaTipoContacto(JComboBox<TipoContactoDTO> listaTipoContacto) {
+		this.listaTipoContacto = listaTipoContacto;
+	}
+	
+
+	
+	
 	public JButton getBtnAgregarPersona() 
 	{
 		return btnAgregarPersona;

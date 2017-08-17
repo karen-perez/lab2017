@@ -8,6 +8,8 @@ import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
+import dto.LocalidadDTO;
+import dto.TipoContactoDTO;
 
 public class Controlador implements ActionListener
 {
@@ -40,7 +42,18 @@ public class Controlador implements ActionListener
 			this.personas_en_tabla = agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono()};
+				Object[] fila = {this.personas_en_tabla.get(i).getNombre(),
+						this.personas_en_tabla.get(i).getApellido(),
+						this.personas_en_tabla.get(i).getTelefono(),
+						this.personas_en_tabla.get(i).getMail(),
+						this.personas_en_tabla.get(i).getFechanac(),
+						this.personas_en_tabla.get(i).getCalle(),
+						this.personas_en_tabla.get(i).getAltura(),
+						this.personas_en_tabla.get(i).getDepto(),
+						this.personas_en_tabla.get(i).getPiso(),
+						this.personas_en_tabla.get(i).getLocalidad(),
+						this.personas_en_tabla.get(i).getTipocontacto(),
+						};
 				this.vista.getModelPersonas().addRow(fila);
 			}
 			this.vista.show();
@@ -50,6 +63,7 @@ public class Controlador implements ActionListener
 		{
 			if(e.getSource() == this.vista.getBtnAgregar())
 			{
+				
 				this.ventanaPersona = new VentanaPersona(this);
 			}
 			else if(e.getSource() == this.vista.getBtnBorrar())
@@ -68,9 +82,18 @@ public class Controlador implements ActionListener
 				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 				reporte.mostrar();				
 			}
+			
+			//aca agrega una persona.. no lo probe todavia!
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
-				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				LocalidadDTO localidad = (LocalidadDTO)ventanaPersona.getListaLocalidades().getSelectedItem();
+				TipoContactoDTO TipoContacto= (TipoContactoDTO)ventanaPersona.getListaTipoContacto().getSelectedItem();
+
+				PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), this.ventanaPersona.getTxtApellido().getText(),
+														this.ventanaPersona.getTextTelefono().getText(), this.ventanaPersona.getTextMail().getText(), 
+														new java.sql.Date(this.ventanaPersona.getDateChooser().getDate().getTime()), this.ventanaPersona.getTextCalle().getText(),
+														this.ventanaPersona.getTextAltura().getText(),this.ventanaPersona.getTextPiso().getText(),
+														this.ventanaPersona.getTextDepto().getText(), localidad, TipoContacto);
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
