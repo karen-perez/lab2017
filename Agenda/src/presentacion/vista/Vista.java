@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class Vista
 {
@@ -17,6 +20,16 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre","Apellido", "Teléfono", "Calle",
 			"Altura", "Piso","Depto", "Localidad", "Mail", "TipoContacto", "FechaNac"};
+	private JMenu mnModificar;
+	private JMenu mnEliminar;
+	private JMenuItem mntmContacto;
+	private JMenuItem mntmLocalidad;
+	private JMenuItem mntmTipoDeContacto;
+	private JMenuItem mntmContacto_1;
+	private JMenuItem mntmLocalidad_1;
+	private JMenuItem mntmTipoDeContacto_1;
+	private JMenuItem mntmContacto_2;
+	private JMenuItem mntmLocalidad_2;
 
 	public Vista() 
 	{
@@ -28,17 +41,17 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 674, 300);
+		frame.setBounds(100, 100, 697, 413);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 648, 262);
+		panel.setBounds(0, 0, 671, 364);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 638, 182);
+		spPersonas.setBounds(20, 23, 628, 279);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -52,20 +65,60 @@ public class Vista
 		spPersonas.setViewportView(tablaPersonas);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(200, 228, 89, 23);
+		btnAgregar.setBounds(262, 330, 89, 23);
 		panel.add(btnAgregar);
 		
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(299, 228, 89, 23);
+		btnEditar.setBounds(361, 330, 89, 23);
 		panel.add(btnEditar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(398, 228, 89, 23);
+		btnBorrar.setBounds(460, 330, 89, 23);
 		panel.add(btnBorrar);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(497, 228, 89, 23);
+		btnReporte.setBounds(559, 330, 89, 23);
 		panel.add(btnReporte);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(20, 0, 197, 21);
+		panel.add(menuBar);
+		
+		JMenu mnAgregar = new JMenu("Agregar");
+		menuBar.add(mnAgregar);
+		
+		mntmContacto = new JMenuItem("Contacto");
+		mnAgregar.add(mntmContacto);
+		
+		mntmLocalidad = new JMenuItem("Localidad");
+		mnAgregar.add(mntmLocalidad);
+		
+		mntmTipoDeContacto = new JMenuItem("Tipo de contacto");
+		mnAgregar.add(mntmTipoDeContacto);
+		
+		mnModificar = new JMenu("Modificar");
+		menuBar.add(mnModificar);
+		
+		mntmContacto_1 = new JMenuItem("Contacto");
+		mnModificar.add(mntmContacto_1);
+		
+		mntmLocalidad_1 = new JMenuItem("Localidad");
+		mnModificar.add(mntmLocalidad_1);
+		
+		mntmTipoDeContacto_1 = new JMenuItem("Tipo de contacto");
+		mnModificar.add(mntmTipoDeContacto_1);
+		
+		mnEliminar = new JMenu("Eliminar");
+		menuBar.add(mnEliminar);
+		
+		mntmContacto_2 = new JMenuItem("Contacto");
+		mnEliminar.add(mntmContacto_2);
+		
+		mntmLocalidad_2 = new JMenuItem("Localidad");
+		mnEliminar.add(mntmLocalidad_2);
+		
+		JMenuItem mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
+		mnEliminar.add(mntmTipoDeContacto_2);
 	}
 	
 	public void show()
