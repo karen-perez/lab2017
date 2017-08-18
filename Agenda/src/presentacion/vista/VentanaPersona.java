@@ -264,6 +264,9 @@ public class VentanaPersona extends JFrame
 
 	
 	
+	public void setBtnAgregarPersona(JButton btnAgregarPersona) {
+		this.btnAgregarPersona = btnAgregarPersona;
+	}
 	public JButton getBtnAgregarPersona() 
 	{
 		return btnAgregarPersona;

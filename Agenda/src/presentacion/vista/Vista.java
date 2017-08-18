@@ -20,6 +20,8 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre","Apellido", "Teléfono", "Calle",
 			"Altura", "Piso","Depto", "Localidad", "Mail", "TipoContacto", "FechaNac"};
+	private JMenuBar menuBar;
+	private JMenu mnAgregar;
 	private JMenu mnModificar;
 	private JMenu mnEliminar;
 	private JMenuItem mntmContacto;
@@ -30,6 +32,9 @@ public class Vista
 	private JMenuItem mntmTipoDeContacto_1;
 	private JMenuItem mntmContacto_2;
 	private JMenuItem mntmLocalidad_2;
+	private JMenuItem mntmTipoDeContacto_2 ;
+
+	
 
 	public Vista() 
 	{
@@ -155,4 +160,133 @@ public class Vista
 	{
 		return nombreColumnas;
 	}
+	public JMenuBar getMenuBar() {
+		return menuBar;
+	}
+
+
+	public void setMenuBar(JMenuBar menuBar) {
+		this.menuBar = menuBar;
+	}
+
+
+	public JMenu getMnAgregar() {
+		return mnAgregar;
+	}
+
+
+	public void setMnAgregar(JMenu mnAgregar) {
+		this.mnAgregar = mnAgregar;
+	}
+
+
+	public JMenu getMnModificar() {
+		return mnModificar;
+	}
+
+
+	public void setMnModificar(JMenu mnModificar) {
+		this.mnModificar = mnModificar;
+	}
+
+
+	public JMenu getMnEliminar() {
+		return mnEliminar;
+	}
+
+
+	public void setMnEliminar(JMenu mnEliminar) {
+		this.mnEliminar = mnEliminar;
+	}
+
+
+	public JMenuItem getMntmContacto() {
+		return mntmContacto;
+	}
+
+
+	public void setMntmContacto(JMenuItem mntmContacto) {
+		this.mntmContacto = mntmContacto;
+	}
+
+
+	public JMenuItem getMntmLocalidad() {
+		return mntmLocalidad;
+	}
+
+
+	public void setMntmLocalidad(JMenuItem mntmLocalidad) {
+		this.mntmLocalidad = mntmLocalidad;
+	}
+
+
+	public JMenuItem getMntmTipoDeContacto() {
+		return mntmTipoDeContacto;
+	}
+
+
+	public void setMntmTipoDeContacto(JMenuItem mntmTipoDeContacto) {
+		this.mntmTipoDeContacto = mntmTipoDeContacto;
+	}
+
+
+	public JMenuItem getMntmContacto_1() {
+		return mntmContacto_1;
+	}
+
+
+	public void setMntmContacto_1(JMenuItem mntmContacto_1) {
+		this.mntmContacto_1 = mntmContacto_1;
+	}
+
+
+	public JMenuItem getMntmLocalidad_1() {
+		return mntmLocalidad_1;
+	}
+
+
+	public void setMntmLocalidad_1(JMenuItem mntmLocalidad_1) {
+		this.mntmLocalidad_1 = mntmLocalidad_1;
+	}
+
+
+	public JMenuItem getMntmTipoDeContacto_1() {
+		return mntmTipoDeContacto_1;
+	}
+
+
+	public void setMntmTipoDeContacto_1(JMenuItem mntmTipoDeContacto_1) {
+		this.mntmTipoDeContacto_1 = mntmTipoDeContacto_1;
+	}
+
+
+	public JMenuItem getMntmContacto_2() {
+		return mntmContacto_2;
+	}
+
+
+	public void setMntmContacto_2(JMenuItem mntmContacto_2) {
+		this.mntmContacto_2 = mntmContacto_2;
+	}
+
+
+	public JMenuItem getMntmLocalidad_2() {
+		return mntmLocalidad_2;
+	}
+
+
+	public void setMntmLocalidad_2(JMenuItem mntmLocalidad_2) {
+		this.mntmLocalidad_2 = mntmLocalidad_2;
+	}
+
+
+	public JMenuItem getMntmTipoDeContacto_2() {
+		return mntmTipoDeContacto_2;
+	}
+
+
+	public void setMntmTipoDeContacto_2(JMenuItem mntmTipoDeContacto_2) {
+		this.mntmTipoDeContacto_2 = mntmTipoDeContacto_2;
+	}
+
 }

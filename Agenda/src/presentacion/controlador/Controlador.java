@@ -3,9 +3,15 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
+
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.vista.VentanaEliminarLoc;
+import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaPersona;
+import presentacion.vista.VentanaTipoContacto;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
 import dto.LocalidadDTO;
@@ -17,6 +23,11 @@ public class Controlador implements ActionListener
 		private List<PersonaDTO> personas_en_tabla;
 		private VentanaPersona ventanaPersona; 
 		private Agenda agenda;
+		private VentanaLocalidad ventanaLocalidad;
+		private VentanaTipoContacto ventanaTipoContacto;
+		private VentanaEliminarLoc ventanaEliminarLoc;
+
+		
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -24,6 +35,25 @@ public class Controlador implements ActionListener
 			this.vista.getBtnAgregar().addActionListener(this);
 			this.vista.getBtnBorrar().addActionListener(this);
 			this.vista.getBtnReporte().addActionListener(this);
+			
+			//aca se agregan los items de los menues
+			
+			//agregar
+			this.vista.getMntmContacto().addActionListener(this);
+			this.vista.getMntmLocalidad().addActionListener(this);
+			this.vista.getMntmTipoDeContacto().addActionListener(this);
+			
+			//modificar
+//			this.vista.getMntmContacto_1().addActionListener(this);
+//			this.vista.getMntmLocalidad_1().addActionListener(this);
+//			this.vista.getMntmTipoDeContacto_1().addActionListener(this);
+			
+			//eliminar
+
+//			this.vista.getMntmContacto_2().addActionListener(this);
+			this.vista.getMntmLocalidad_2().addActionListener(this);
+//			this.vista.getMntmTipoDeContacto_2().addActionListener(this);
+			
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
 		}
@@ -59,13 +89,50 @@ public class Controlador implements ActionListener
 			this.vista.show();
 		}
 		
-		public void actionPerformed(ActionEvent e) 
+		public void actionPerformed(ActionEvent e) 	
 		{
-			if(e.getSource() == this.vista.getBtnAgregar())
-			{
+			//aca se abre el menu de agregar o presionando el boton de agregar, 
+			//ambos abren la ventana para agregar un nuevo contacto
+			if (e.getSource() == this.vista.getBtnAgregar() || e.getSource() == this.vista.getMntmContacto()) {
+				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
+					localidadModel.addElement(loc);
+				}
 				
+				DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
+					tipoContactoModel.addElement(tc);
+				}
+						
 				this.ventanaPersona = new VentanaPersona(this);
+				}
+			
+			
+			
+			//abre la ventana para agregar una nueva localidad
+			else if (e.getSource() == this.vista.getMntmLocalidad()){		
+				
+				this.ventanaLocalidad= new VentanaLocalidad(this);
 			}
+			//abre la ventana para agregar un nuevo tipo de contacto
+			else if (e.getSource() == this.vista.getMntmTipoDeContacto()){		
+				
+				this.ventanaTipoContacto= new VentanaTipoContacto(this);
+			}
+			
+			//abre la ventana para eliminar una localidad
+			else if (e.getSource() == this.vista.getMntmLocalidad_2())
+			{
+				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
+					localidadModel.addElement(loc);
+				}
+				
+				this.ventanaEliminarLoc = new VentanaEliminarLoc(this, localidadModel,null);
+				
+			}
+	
+			
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
@@ -77,11 +144,13 @@ public class Controlador implements ActionListener
 				this.llenarTabla();
 				
 			}
+			
 			else if(e.getSource() == this.vista.getBtnReporte())
 			{				
 				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 				reporte.mostrar();				
 			}
+			
 			
 			//aca agrega una persona.. no lo probe todavia!
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
