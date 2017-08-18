@@ -144,6 +144,10 @@ public class VentanaPersona extends JFrame
 		textPiso.setBounds(395, 104, 164, 20);
 		panel.add(textPiso);
 		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(74, 294, 154, 20);
+		panel.add(dateChooser);
+		
 		/*JComboBox listaTipoContacto = new JComboBox();
 		listaTipoContacto.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));*/
 		listaTipoContacto = new JComboBox<TipoContactoDTO>();
@@ -158,9 +162,7 @@ public class VentanaPersona extends JFrame
 		panel.add(listaLocalidades);
 		
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(74, 294, 154, 20);
-		panel.add(dateChooser);
+		
 		
 		this.setVisible(true);
 	}

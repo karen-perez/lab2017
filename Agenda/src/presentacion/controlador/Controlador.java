@@ -75,15 +75,15 @@ public class Controlador implements ActionListener
 				Object[] fila = {this.personas_en_tabla.get(i).getNombre(),
 						this.personas_en_tabla.get(i).getApellido(),
 						this.personas_en_tabla.get(i).getTelefono(),
-						this.personas_en_tabla.get(i).getMail(),
-						this.personas_en_tabla.get(i).getFechanac(),
 						this.personas_en_tabla.get(i).getCalle(),
 						this.personas_en_tabla.get(i).getAltura(),
-						this.personas_en_tabla.get(i).getDepto(),
 						this.personas_en_tabla.get(i).getPiso(),
+						this.personas_en_tabla.get(i).getDepto(),
 						this.personas_en_tabla.get(i).getLocalidad(),
+						this.personas_en_tabla.get(i).getMail(),						
 						this.personas_en_tabla.get(i).getTipocontacto(),
-						};
+						this.personas_en_tabla.get(i).getFechanac(),
+						};				
 				this.vista.getModelPersonas().addRow(fila);
 			}
 			this.vista.show();

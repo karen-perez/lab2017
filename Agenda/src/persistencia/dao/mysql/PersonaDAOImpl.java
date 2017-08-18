@@ -14,7 +14,9 @@ import java.sql.Date;
 
 public class PersonaDAOImpl implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(nombre, apellido, telefono, " 
+			+ "mail, fechanac, calle, altura, piso, depto, idlocalidad, idcontacto ) " 
+			+ "VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final Conexion conexion = Conexion.getConexion();

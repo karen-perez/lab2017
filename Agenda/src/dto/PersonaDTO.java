@@ -35,6 +35,7 @@ public class PersonaDTO
 		this.localidad = localidad;
 		this.mail = mail;
 		this.tipocontacto = tipocontacto;
+		this.fechanac = fechanac;
 	}
 	
 	
