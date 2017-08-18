@@ -187,16 +187,56 @@ public class Controlador implements ActionListener {
 				this.ventanaTipoContacto.dispose();
 
 		}
-		//ingresar una nueva localidad
-		else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar())
+		//modificar localidad (validacion)
+		else if (this.ventanaModificarLoc != null && e.getSource() == this.ventanaModificarLoc.getBtnModificar())
 		{
-			LocalidadDTO nuevaLocalidad=new LocalidadDTO(0,
-					this.ventanaLocalidad.getTextLocalidad().getText());
-				this.agenda.agregarLocalidad(nuevaLocalidad);
-				this.ventanaLocalidad.dispose();
-				setExitoMsj("Agregada con exito!");
+			if(this.ventanaModificarLoc.getTextNuevaModificar().getText().isEmpty())
+			{
+				setWarningMsj("Por favor ingresar la nueva modificacion.");
 
+			}
+			else
+			{
+			
+			
+			if(this.ventanaModificarLoc.isModificoLoc()==true)
+			{
+			
+			LocalidadDTO nuevaLocalidad=new LocalidadDTO(
+					((LocalidadDTO)ventanaModificarLoc.getComboBoxLocalidades().getSelectedItem()).getIdLocalidad(),
+					this.ventanaModificarLoc.getTextNuevoModificado().getText());
+				this.agenda.ActualizarLocalidad(nuevaLocalidad);
+				
+			}else
+			{
+				TipoContactoDTO nuevoTC=new TipoContactoDTO(
+						((TipoContactoDTO)ventanaModificarLoc.getComboBoxLocalidades().getSelectedItem()).getIdTipoContacto(),
+						this.ventanaModificarLoc.getTextNuevoModificado().getText());
+					this.agenda.ActualizarTipoContacto(nuevoTC);
+			}
+			setExitoMsj("Modificado con exito!");
+			this.llenarTabla();
+			this.ventanaModificarLoc.dispose();
+			}
 		}	
+
+		//ingresar una nueva localidad
+		else 
+			if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()){
+				if(ventanaLocalidad.getTextLocalidad().getText().isEmpty()){
+					setWarningMsj("La localidad no puede estar vacia!");
+					
+				}else{
+					LocalidadDTO nuevaLocalidad=new LocalidadDTO(0,
+							this.ventanaLocalidad.getTextLocalidad().getText());
+						this.agenda.agregarLocalidad(nuevaLocalidad);
+						setExitoMsj("Agregada con exito!");
+						this.ventanaLocalidad.dispose();
+					
+				}
+				
+			}
+		
 
 
 		// abre la ventana para agregar una nueva localidad
@@ -329,7 +369,7 @@ public class Controlador implements ActionListener {
 		return status;
 	}
 
-	public static void setWarningMsg(String text){
+	public static void setWarningMsj(String text){
 	    Toolkit.getDefaultToolkit().beep();
 	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
 	    JDialog dialog = optionPane.createDialog("Warning!");
