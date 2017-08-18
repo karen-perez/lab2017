@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
@@ -32,7 +33,7 @@ public class Controlador implements ActionListener {
 		this.vista = vista;
 		this.vista.getBtnAgregar().addActionListener(this);
 		this.vista.getBtnEditar().addActionListener(this);
-		this.vista.getBtnBorrar().addActionListener(this);		
+		this.vista.getBtnBorrar().addActionListener(this);
 		this.vista.getBtnReporte().addActionListener(this);
 
 		// aca se agregan los items de los menues
@@ -117,38 +118,56 @@ public class Controlador implements ActionListener {
 		}
 
 		else if (e.getSource() == this.vista.getBtnEditar()) {
-			
-			DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
-			for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
-				localidadModel.addElement(loc);
-			}
 
-			DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
-			for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
-				tipoContactoModel.addElement(tc);
-			}
-			
 			int[] filas_seleccionadas = this.vista.getTablaPersonas()
 					.getSelectedRows();
-			
-			PersonaDTO contacto = this.personas_en_tabla.get(filas_seleccionadas[0]);
-			
-			this.ventanaPersona = new VentanaPersona(this);
-			this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
-			this.ventanaPersona.getListaTipoContacto().setModel(
-					tipoContactoModel);
-			this.ventanaPersona.getTxtApellido().setText(contacto.getApellido());
-			this.ventanaPersona.getTxtNombre().setText(contacto.getNombre());
-			this.ventanaPersona.getTextTelefono().setText(contacto.getTelefono());
-			this.ventanaPersona.getTextCalle().setText(contacto.getCalle());
-			this.ventanaPersona.getTextAltura().setText(contacto.getAltura());
-			this.ventanaPersona.getTextPiso().setText(contacto.getPiso());
-			this.ventanaPersona.getTextDepto().setText(contacto.getDepto());
-			this.ventanaPersona.getTextMail().setText(contacto.getMail());
-			this.ventanaPersona.getDateChooser().setDate(contacto.getFechanac());
-			this.ventanaPersona.getListaLocalidades().setSelectedItem(new LocalidadDTO(contacto.getLocalidad().getIdLocalidad(), contacto.getLocalidad().getLocalidad()) );
-			this.ventanaPersona.getListaTipoContacto().setSelectedItem(new TipoContactoDTO(contacto.getTipocontacto().getIdTipoContacto(), contacto.getTipocontacto().getTipoContacto()) );
-			
+
+			if (filas_seleccionadas.length > 0) {
+
+				PersonaDTO contacto = this.personas_en_tabla
+						.get(filas_seleccionadas[0]);
+
+				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
+					localidadModel.addElement(loc);
+				}
+
+				DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
+					tipoContactoModel.addElement(tc);
+				}
+
+				this.ventanaPersona = new VentanaPersona(this);
+				this.ventanaPersona.getListaLocalidades().setModel(
+						localidadModel);
+				this.ventanaPersona.getListaTipoContacto().setModel(
+						tipoContactoModel);
+				this.ventanaPersona.getTxtApellido().setText(
+						contacto.getApellido());
+				this.ventanaPersona.getTxtNombre()
+						.setText(contacto.getNombre());
+				this.ventanaPersona.getTextTelefono().setText(
+						contacto.getTelefono());
+				this.ventanaPersona.getTextCalle().setText(contacto.getCalle());
+				this.ventanaPersona.getTextAltura().setText(
+						contacto.getAltura());
+				this.ventanaPersona.getTextPiso().setText(contacto.getPiso());
+				this.ventanaPersona.getTextDepto().setText(contacto.getDepto());
+				this.ventanaPersona.getTextMail().setText(contacto.getMail());
+				this.ventanaPersona.getDateChooser().setDate(
+						contacto.getFechanac());
+				this.ventanaPersona.getListaLocalidades().setSelectedItem(
+						new LocalidadDTO(contacto.getLocalidad()
+								.getIdLocalidad(), contacto.getLocalidad()
+								.getLocalidad()));
+				this.ventanaPersona.getListaTipoContacto().setSelectedItem(
+						new TipoContactoDTO(contacto.getTipocontacto()
+								.getIdTipoContacto(), contacto
+								.getTipocontacto().getTipoContacto()));
+			} else {
+				JOptionPane.showMessageDialog(this.vista.getFrame(), "Seleccione un contacto.");
+			}
+
 		}
 
 		// abre la ventana para agregar una nueva localidad

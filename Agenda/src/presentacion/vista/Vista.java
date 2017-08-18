@@ -295,4 +295,9 @@ public class Vista
 		this.mntmTipoDeContacto_2 = mntmTipoDeContacto_2;
 	}
 
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
 }
