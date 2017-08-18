@@ -262,20 +262,27 @@ public class Controlador implements ActionListener {
 			TipoContactoDTO TipoContacto = (TipoContactoDTO) ventanaPersona
 					.getListaTipoContacto().getSelectedItem();
 
+			java.sql.Date fecha = this.ventanaPersona.getDateChooser().getDate() != null ? 
+					new java.sql.Date(this.ventanaPersona.getDateChooser().getDate().getTime()) : null;
 			PersonaDTO nuevaPersona = new PersonaDTO(0, this.ventanaPersona
 					.getTxtNombre().getText(), this.ventanaPersona
 					.getTxtApellido().getText(), this.ventanaPersona
 					.getTextTelefono().getText(), this.ventanaPersona
-					.getTextMail().getText(), new java.sql.Date(
-					this.ventanaPersona.getDateChooser().getDate().getTime()),
+					.getTextMail().getText(), fecha,
 					this.ventanaPersona.getTextCalle().getText(),
 					this.ventanaPersona.getTextAltura().getText(),
 					this.ventanaPersona.getTextPiso().getText(),
 					this.ventanaPersona.getTextDepto().getText(), localidad,
 					TipoContacto);
-			this.agenda.agregarPersona(nuevaPersona);
-			this.llenarTabla();
-			this.ventanaPersona.dispose();
+			try {
+				this.agenda.agregarPersona(nuevaPersona);
+				this.llenarTabla();
+				this.ventanaPersona.dispose();
+			} catch (Exception excepcionAgregarPersona) {
+				JOptionPane.showMessageDialog(this.ventanaPersona, excepcionAgregarPersona.getMessage());
+			}
+			
+			
 		}
 	}
 

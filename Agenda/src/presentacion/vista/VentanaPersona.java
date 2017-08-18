@@ -159,10 +159,7 @@ public class VentanaPersona extends JFrame
 		//listaLocalidades.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
 		listaLocalidades = new JComboBox<LocalidadDTO>();
 		listaLocalidades.setBounds(395, 152, 164, 20);
-		panel.add(listaLocalidades);
-		
-		
-		
+		panel.add(listaLocalidades);		
 		
 		this.setVisible(true);
 	}

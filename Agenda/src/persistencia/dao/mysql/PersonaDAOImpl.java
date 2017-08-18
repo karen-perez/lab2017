@@ -17,6 +17,9 @@ public class PersonaDAOImpl implements PersonaDAO
 			+ "mail, fechanac, calle, altura, piso, depto, idlocalidad, idcontacto ) " 
 			+ "VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
+	private static final String update = "UPDATE personas SET nombre = ?, apellido = ?, telefono, = ?" 
+			+ "mail = ?, fechanac = ?, calle = ?, altura = ?, piso = ?, depto = ?, idlocalidad = ?, idcontacto = ?" 
+			+ " WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final Conexion conexion = Conexion.getConexion();
 	
@@ -64,6 +67,38 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
+				return true;
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally //Se ejecuta siempre
+		{
+			conexion.cerrarConexion();
+		}
+		return false;
+	}
+	
+	public boolean update(PersonaDTO persona) {
+		PreparedStatement statement;
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement.setString(1, persona.getNombre());
+			statement.setString(2, persona.getApellido());
+			statement.setString(3, persona.getTelefono());
+			statement.setString(4, persona.getMail());
+			statement.setDate(5, persona.getFechanac());
+			statement.setString(6, persona.getCalle());
+			statement.setString(7, persona.getAltura());
+			statement.setString(8, persona.getPiso());
+			statement.setString(9, persona.getDepto());
+			statement.setInt(10, persona.getLocalidad().getIdLocalidad());
+			statement.setInt(11, persona.getTipocontacto().getIdTipoContacto());
+			statement.setInt(12, persona.getIdPersona());
+						
+			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
 		catch (SQLException e) 
