@@ -9,7 +9,6 @@ import java.util.List;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
-import java.sql.Date;
 
 
 public class PersonaDAOImpl implements PersonaDAO
