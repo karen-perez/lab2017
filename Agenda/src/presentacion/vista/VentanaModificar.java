@@ -16,7 +16,7 @@ import presentacion.controlador.Controlador;
 import dto.LocalidadDTO;
 import dto.TipoContactoDTO;
 
-public class VentanaModificarLoc extends JFrame {
+public class VentanaModificar extends JFrame {
 
 	
 	/**
@@ -52,10 +52,10 @@ public class VentanaModificarLoc extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaModificarLoc(Controlador controlador, DefaultComboBoxModel<LocalidadDTO> localidades, DefaultComboBoxModel<TipoContactoDTO> TipoContacto ) {
+	public VentanaModificar(Controlador controlador, DefaultComboBoxModel<LocalidadDTO> localidades, DefaultComboBoxModel<TipoContactoDTO> TipoContacto ) {
 		
 		super();
-		setTitle("Modificar localidad");
+		setTitle("Seleccione lo que desea modificar");
 		this.controlador = controlador;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

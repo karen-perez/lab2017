@@ -122,7 +122,7 @@ public class Vista
 		mntmLocalidad_2 = new JMenuItem("Localidad");
 		mnEliminar.add(mntmLocalidad_2);
 		
-		JMenuItem mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
+		mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
 		mnEliminar.add(mntmTipoDeContacto_2);
 	}
 	

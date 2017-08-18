@@ -103,7 +103,7 @@ public class TipoContactoDAOImpl implements TipoContactoDAO {
 			statement = conexion.getSQLConexion().prepareStatement(readByID);
 			statement.setInt(1, ID);
 			resultSet = statement.executeQuery();
-			//tengo que modificar esto!!!
+			
 		 if( resultSet.next())
 			{
 				
@@ -136,7 +136,7 @@ public class TipoContactoDAOImpl implements TipoContactoDAO {
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readall);
 			resultSet = statement.executeQuery();
-			//tengo que modificar esto!!!
+			
 			while(resultSet.next())
 			{
 				

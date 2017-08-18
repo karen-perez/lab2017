@@ -10,6 +10,7 @@ import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaEliminarLoc;
 import presentacion.vista.VentanaLocalidad;
+import presentacion.vista.VentanaModificar;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.VentanaTipoContacto;
 import presentacion.vista.Vista;
@@ -26,6 +27,7 @@ public class Controlador implements ActionListener
 		private VentanaLocalidad ventanaLocalidad;
 		private VentanaTipoContacto ventanaTipoContacto;
 		private VentanaEliminarLoc ventanaEliminarLoc;
+		private VentanaModificar ventanaModificarLoc;
 
 		
 		
@@ -44,15 +46,13 @@ public class Controlador implements ActionListener
 			this.vista.getMntmTipoDeContacto().addActionListener(this);
 			
 			//modificar
-//			this.vista.getMntmContacto_1().addActionListener(this);
-//			this.vista.getMntmLocalidad_1().addActionListener(this);
-//			this.vista.getMntmTipoDeContacto_1().addActionListener(this);
+			this.vista.getMntmLocalidad_1().addActionListener(this);
+			this.vista.getMntmTipoDeContacto_1().addActionListener(this);
 			
 			//eliminar
-
-//			this.vista.getMntmContacto_2().addActionListener(this);
+			this.vista.getMntmContacto_2().addActionListener(this);
 			this.vista.getMntmLocalidad_2().addActionListener(this);
-//			this.vista.getMntmTipoDeContacto_2().addActionListener(this);
+			this.vista.getMntmTipoDeContacto_2().addActionListener(this);
 			
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
@@ -108,21 +108,39 @@ public class Controlador implements ActionListener
 				this.ventanaPersona.getListaLocalidades().setModel(localidadModel);		
 				this.ventanaPersona.getListaTipoContacto().setModel(tipoContactoModel);
 				}
-			
+			//elimina un contacto
+			else if (e.getSource() == this.vista.getBtnBorrar() || e.getSource()== this.vista.getMntmContacto_2()) {
+				int[] filas_seleccionadas = this.vista.getTablaPersonas()
+						.getSelectedRows();
+				for (int fila : filas_seleccionadas) {
+					this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
+				}
+
+				this.llenarTabla();
+
+			}
 			
 			
 			//abre la ventana para agregar una nueva localidad
 			else if (e.getSource() == this.vista.getMntmLocalidad()){		
 				
 				this.ventanaLocalidad= new VentanaLocalidad(this);
-			}
-			//abre la ventana para agregar un nuevo tipo de contacto
-			else if (e.getSource() == this.vista.getMntmTipoDeContacto()){		
 				
-				this.ventanaTipoContacto= new VentanaTipoContacto(this);
 			}
+			//modifica una localidad
+			else if (e.getSource() == this.vista.getMntmLocalidad_1())
+			{
+				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
+					localidadModel.addElement(loc);
+				}
+				
+				this.ventanaModificarLoc = new VentanaModificar(this, localidadModel,null);
+				
+			}
+		
 			
-			//abre la ventana para eliminar una localidad
+			//elimina una localidad
 			else if (e.getSource() == this.vista.getMntmLocalidad_2())
 			{
 				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
@@ -133,6 +151,39 @@ public class Controlador implements ActionListener
 				this.ventanaEliminarLoc = new VentanaEliminarLoc(this, localidadModel,null);
 				
 			}
+			
+			//abre la ventana para agregar un nuevo tipo de contacto
+			else if (e.getSource() == this.vista.getMntmTipoDeContacto()){		
+				
+				this.ventanaTipoContacto= new VentanaTipoContacto(this);
+			}
+			
+			//modificar un nuevo tipo de contacto
+			else if (e.getSource() == this.vista.getMntmTipoDeContacto_1())
+			{
+				DefaultComboBoxModel<TipoContactoDTO> TipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				for (TipoContactoDTO con : agenda.obtenerTipoContacto()) {
+					TipoContactoModel.addElement(con);
+				}
+				
+				this.ventanaModificarLoc = new VentanaModificar(this,null, TipoContactoModel);
+				
+			}
+			
+			//eliminar un tipo de contacto
+			else if (e.getSource() == this.vista.getMntmTipoDeContacto_2())
+			{
+				DefaultComboBoxModel<TipoContactoDTO> TipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				for (TipoContactoDTO con : agenda.obtenerTipoContacto()) {
+					TipoContactoModel.addElement(con);
+				}
+				
+				this.ventanaEliminarLoc = new VentanaEliminarLoc(this,null, TipoContactoModel);
+			
+			}
+			
+			
+			
 	
 			
 			else if(e.getSource() == this.vista.getBtnBorrar())
