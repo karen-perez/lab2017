@@ -57,6 +57,9 @@ public class Agenda
 		if(persona.getLocalidad().getLocalidad().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Localidad.");
 		}
+		if(persona.getTipocontacto().getTipoContacto().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener un Tipo de contacto.");
+		}
 		if(persona.getFechanac() == null) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
 		}	
