@@ -27,7 +27,7 @@ public class VentanaEliminarLoc extends JFrame {
 	public VentanaEliminarLoc(Controlador controlador, DefaultComboBoxModel<LocalidadDTO> localidades, DefaultComboBoxModel<TipoContactoDTO> TipoContacto ) {
 		
 		super();
-		setTitle("Eliminar una localidad");
+		setTitle("Eliminar");
 		this.controlador = controlador;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,7 +41,7 @@ public class VentanaEliminarLoc extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblEliminar = new JLabel("Seleccione la localidad a eliminar:");
+		JLabel lblEliminar = new JLabel("Seleccione lo que desea eliminar");
 		lblEliminar.setBounds(10, 57, 209, 16);
 		panel.add(lblEliminar);
 		

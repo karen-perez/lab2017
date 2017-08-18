@@ -134,7 +134,7 @@ public class LocalidadDAOImpl implements LocalidadDAO
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readall);
 			resultSet = statement.executeQuery();
-			//tengo que modificar esto!!!
+			
 			while(resultSet.next())
 			{
 				
