@@ -153,6 +153,12 @@ public class Controlador implements ActionListener
 				reporte.mostrar();				
 			}
 			
+			else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()) 
+			{
+				LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, this.ventanaLocalidad.getTextLocalidad().getText());
+				this.agenda.agregarLocalidad(nuevaLocalidad);
+				this.ventanaLocalidad.dispose();
+			}
 			
 			//aca agrega una persona.. no lo probe todavia!
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
