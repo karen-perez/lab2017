@@ -1,13 +1,9 @@
 package presentacion.vista;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JMenu;
@@ -89,7 +85,7 @@ public class Vista
 		btnReporte.setBounds(559, 330, 89, 23);
 		panel.add(btnReporte);
 		
-		/*JMenuBar menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(20, 0, 197, 21);
 		panel.add(menuBar);
 		
@@ -127,62 +123,7 @@ public class Vista
 		mnEliminar.add(mntmLocalidad_2);
 		
 		JMenuItem mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
-		mnEliminar.add(mntmTipoDeContacto_2);*/
-		//Where the GUI is created:
-		JMenuBar menuBar;
-		JMenu menu, submenu;
-		JMenuItem menuItem;
-		
-
-		//Create the menu bar.
-		menuBar = new JMenuBar();
-
-		//Build the first menu.
-		menu = new JMenu("A Menu");
-		menu.setMnemonic(KeyEvent.VK_A);
-		menu.getAccessibleContext().setAccessibleDescription(
-		        "The only menu in this program that has menu items");
-		menuBar.add(menu);
-
-		//a group of JMenuItems
-		menuItem = new JMenuItem("A text-only menu item",
-		                         KeyEvent.VK_T);
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext().setAccessibleDescription(
-		        "This doesn't really do anything");
-		menu.add(menuItem);
-
-		menuItem = new JMenuItem("Both text and icon"
-		                         );
-		menuItem.setMnemonic(KeyEvent.VK_B);
-		menu.add(menuItem);
-
-		menuItem = new JMenuItem();
-		menuItem.setMnemonic(KeyEvent.VK_D);
-		menu.add(menuItem);
-
-		
-		//a submenu
-		menu.addSeparator();
-		submenu = new JMenu("A submenu");
-		submenu.setMnemonic(KeyEvent.VK_S);
-
-		menuItem = new JMenuItem("An item in the submenu");
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_2, ActionEvent.ALT_MASK));
-		submenu.add(menuItem);
-
-		menuItem = new JMenuItem("Another item");
-		submenu.add(menuItem);
-		menu.add(submenu);
-
-		//Build second menu in the menu bar.
-		menu = new JMenu("Another Menu");
-		menu.setMnemonic(KeyEvent.VK_N);
-		menu.getAccessibleContext().setAccessibleDescription(
-		        "This menu does nothing");
-		menuBar.add(menu);
+		mnEliminar.add(mntmTipoDeContacto_2);
 	}
 	
 	public void show()
