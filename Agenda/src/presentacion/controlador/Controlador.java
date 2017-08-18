@@ -1,10 +1,14 @@
 package presentacion.controlador;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import modelo.Agenda;
@@ -169,6 +173,31 @@ public class Controlador implements ActionListener {
 			}
 
 		}
+		
+		//ingresar un nuevo tipo de contacto
+		else if (this.ventanaTipoContacto != null && e.getSource() == this.ventanaTipoContacto.getBtnAgregar())
+		{
+			
+			
+			TipoContactoDTO nuevoContacto=new TipoContactoDTO(0,
+					this.ventanaTipoContacto.getTextTipoContacto().getText());
+				this.agenda.agregarTipoContacto(nuevoContacto);
+				setExitoMsj("Agregado con exito!");
+
+				this.ventanaTipoContacto.dispose();
+
+		}
+		//ingresar una nueva localidad
+		else if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar())
+		{
+			LocalidadDTO nuevaLocalidad=new LocalidadDTO(0,
+					this.ventanaLocalidad.getTextLocalidad().getText());
+				this.agenda.agregarLocalidad(nuevaLocalidad);
+				this.ventanaLocalidad.dispose();
+				setExitoMsj("Agregada con exito!");
+
+		}	
+
 
 		// abre la ventana para agregar una nueva localidad
 		else if (e.getSource() == this.vista.getMntmLocalidad()) {
@@ -274,16 +303,55 @@ public class Controlador implements ActionListener {
 					this.ventanaPersona.getTextPiso().getText(),
 					this.ventanaPersona.getTextDepto().getText(), localidad,
 					TipoContacto);
+
 			try {
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
+				setExitoMsj("Agregado con exito!");
 				this.ventanaPersona.dispose();
 			} catch (Exception excepcionAgregarPersona) {
 				JOptionPane.showMessageDialog(this.ventanaPersona, excepcionAgregarPersona.getMessage());
-			}
-			
-			
+			}			
+
 		}
+		
+		
+		
 	}
+	@SuppressWarnings("unused")
+	private boolean mailValido(String email) {
+		boolean status=false;
+		System.out.println(email);
+		 String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		 Pattern pattern= Pattern.compile(ePattern);
+		 Matcher matcher=pattern.matcher(email);
+		 if(matcher.matches())
+		 {
+			 status=true;
+		 }
+		 else
+		 {
+			 status=false;
+		 }
+		return status;
+	}
+
+	public static void setWarningMsg(String text){
+	    Toolkit.getDefaultToolkit().beep();
+	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+	    JDialog dialog = optionPane.createDialog("Warning!");
+	    dialog.setAlwaysOnTop(true);
+	    dialog.setVisible(true);
+	}
+
+	
+	public static void setExitoMsj(String text){
+	    Toolkit.getDefaultToolkit().beep();
+	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+	    JDialog dialog = optionPane.createDialog("Exito!");
+	    dialog.setAlwaysOnTop(true);
+	    dialog.setVisible(true);
+	}
+
 
 }
