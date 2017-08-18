@@ -94,11 +94,13 @@ public class Controlador implements ActionListener {
 		if (e.getSource() == this.vista.getBtnAgregar()
 				|| e.getSource() == this.vista.getMntmContacto()) {
 			DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+			localidadModel.addElement(new LocalidadDTO(0, ""));
 			for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
 				localidadModel.addElement(loc);
 			}
 
 			DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+			tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
 			for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
 				tipoContactoModel.addElement(tc);
 			}
@@ -132,11 +134,13 @@ public class Controlador implements ActionListener {
 						.get(filas_seleccionadas[0]);
 
 				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				localidadModel.addElement(new LocalidadDTO(0, ""));
 				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
 					localidadModel.addElement(loc);
 				}
 
 				DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
 				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
 					tipoContactoModel.addElement(tc);
 				}
@@ -331,21 +335,28 @@ public class Controlador implements ActionListener {
 			TipoContactoDTO TipoContacto = (TipoContactoDTO) ventanaPersona
 					.getListaTipoContacto().getSelectedItem();
 
+			java.sql.Date fecha = this.ventanaPersona.getDateChooser().getDate() != null ? 
+					new java.sql.Date(this.ventanaPersona.getDateChooser().getDate().getTime()) : null;
 			PersonaDTO nuevaPersona = new PersonaDTO(0, this.ventanaPersona
 					.getTxtNombre().getText(), this.ventanaPersona
 					.getTxtApellido().getText(), this.ventanaPersona
 					.getTextTelefono().getText(), this.ventanaPersona
-					.getTextMail().getText(), new java.sql.Date(
-					this.ventanaPersona.getDateChooser().getDate().getTime()),
+					.getTextMail().getText(), fecha,
 					this.ventanaPersona.getTextCalle().getText(),
 					this.ventanaPersona.getTextAltura().getText(),
 					this.ventanaPersona.getTextPiso().getText(),
 					this.ventanaPersona.getTextDepto().getText(), localidad,
 					TipoContacto);
-			this.agenda.agregarPersona(nuevaPersona);
-			setExitoMsj("Agregado con exito!");
-			this.llenarTabla();
-			this.ventanaPersona.dispose();
+
+			try {
+				this.agenda.agregarPersona(nuevaPersona);
+				this.llenarTabla();
+				setExitoMsj("Agregado con exito!");
+				this.ventanaPersona.dispose();
+			} catch (Exception excepcionAgregarPersona) {
+				JOptionPane.showMessageDialog(this.ventanaPersona, excepcionAgregarPersona.getMessage());
+			}			
+
 		}
 		
 		

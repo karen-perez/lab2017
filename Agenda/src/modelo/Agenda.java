@@ -30,12 +30,39 @@ public class Agenda
 	
 	public void agregarPersona(PersonaDTO nuevaPersona)
 	{
+		validarPersona(nuevaPersona);
 		persona.insert(nuevaPersona);
 	}
 
 	public void borrarPersona(PersonaDTO persona_a_eliminar) 
 	{
 		persona.delete(persona_a_eliminar);
+	}
+	
+	public void actualizarPersona(PersonaDTO persona_a_actualizar) {
+		persona.update(persona_a_actualizar);
+	}
+	
+	public void validarPersona(PersonaDTO persona) {
+		
+		if(persona.getNombre().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener un Nombre.");
+		}
+		if(persona.getApellido().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener un Apellido.");
+		}		
+		if(persona.getTelefono().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener un Teléfono.");
+		}
+		if(persona.getLocalidad().getLocalidad().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener una Localidad.");
+		}
+		if(persona.getTipocontacto().getTipoContacto().equals("")) {
+			throw new IllegalArgumentException("El contacto tiene que tener un Tipo de contacto.");
+		}
+		if(persona.getFechanac() == null) {
+			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
+		}	
 	}
 
 //	public void ActualizarContacto(PersonaDTO Persona_a_actualizar) 
