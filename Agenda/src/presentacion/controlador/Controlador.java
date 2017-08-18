@@ -178,7 +178,7 @@ public class Controlador implements ActionListener {
 
 		}
 		
-		//ingresar un nuevo tipo de contacto
+		//ingresar un nuevo tipo de contacto(validacion)
 		else if (this.ventanaTipoContacto != null && e.getSource() == this.ventanaTipoContacto.getBtnAgregar())
 		{
 			
@@ -201,8 +201,7 @@ public class Controlador implements ActionListener {
 			}
 			else
 			{
-			
-			
+				
 			if(this.ventanaModificarLoc.isModificoLoc()==true)
 			{
 			
@@ -224,7 +223,7 @@ public class Controlador implements ActionListener {
 			}
 		}	
 
-		//ingresar una nueva localidad
+		//ingresar una nueva localidad(validacion)
 		else 
 			if (this.ventanaLocalidad != null && e.getSource() == this.ventanaLocalidad.getBtnAgregar()){
 				if(ventanaLocalidad.getTextLocalidad().getText().isEmpty()){
@@ -347,7 +346,7 @@ public class Controlador implements ActionListener {
 					this.ventanaPersona.getTextPiso().getText(),
 					this.ventanaPersona.getTextDepto().getText(), localidad,
 					TipoContacto);
-
+			
 			try {
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
@@ -362,7 +361,7 @@ public class Controlador implements ActionListener {
 		
 		
 	}
-	@SuppressWarnings("unused")
+	
 	private boolean mailValido(String email) {
 		boolean status=false;
 		System.out.println(email);
