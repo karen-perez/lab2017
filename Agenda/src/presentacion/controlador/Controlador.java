@@ -103,8 +103,10 @@ public class Controlador implements ActionListener
 				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
 					tipoContactoModel.addElement(tc);
 				}
-						
+				
 				this.ventanaPersona = new VentanaPersona(this);
+				this.ventanaPersona.getListaLocalidades().setModel(localidadModel);		
+				this.ventanaPersona.getListaTipoContacto().setModel(tipoContactoModel);
 				}
 			
 			
@@ -155,6 +157,7 @@ public class Controlador implements ActionListener
 			//aca agrega una persona.. no lo probe todavia!
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
+								
 				LocalidadDTO localidad = (LocalidadDTO)ventanaPersona.getListaLocalidades().getSelectedItem();
 				TipoContactoDTO TipoContacto= (TipoContactoDTO)ventanaPersona.getListaTipoContacto().getSelectedItem();
 

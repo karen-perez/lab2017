@@ -144,14 +144,16 @@ public class VentanaPersona extends JFrame
 		textPiso.setBounds(395, 104, 164, 20);
 		panel.add(textPiso);
 		
-		JComboBox listaTipoContacto = new JComboBox();
-		listaTipoContacto.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));
+		/*JComboBox listaTipoContacto = new JComboBox();
+		listaTipoContacto.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));*/
+		listaTipoContacto = new JComboBox<TipoContactoDTO>();
 		listaTipoContacto.setToolTipText("");
 		listaTipoContacto.setBounds(395, 207, 164, 20);
 		panel.add(listaTipoContacto);
 		
-		JComboBox listaLocalidades = new JComboBox();
-		listaLocalidades.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
+		//JComboBox listaLocalidades = new JComboBox();
+		//listaLocalidades.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
+		listaLocalidades = new JComboBox<LocalidadDTO>();
 		listaLocalidades.setBounds(395, 152, 164, 20);
 		panel.add(listaLocalidades);
 		
