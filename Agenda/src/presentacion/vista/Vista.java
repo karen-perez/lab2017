@@ -15,13 +15,14 @@ public class Vista
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
+	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre","Apellido", "Teléfono", "Calle",
 			"Altura", "Piso","Depto", "Localidad", "Mail", "TipoContacto", "FechaNac"};
 	private JMenuBar menuBar;
-	private JMenu mnAgregar;
+	private JMenu mnAgregar;	
 	private JMenu mnModificar;
 	private JMenu mnEliminar;
 	private JMenuItem mntmContacto;
@@ -73,7 +74,7 @@ public class Vista
 		btnAgregar.setBounds(262, 330, 89, 23);
 		panel.add(btnAgregar);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.setBounds(361, 330, 89, 23);
 		panel.add(btnEditar);
 		
@@ -136,6 +137,11 @@ public class Vista
 		return btnAgregar;
 	}
 
+	public JButton getBtnEditar() 
+	{
+		return btnEditar;
+	}
+	
 	public JButton getBtnBorrar() 
 	{
 		return btnBorrar;
