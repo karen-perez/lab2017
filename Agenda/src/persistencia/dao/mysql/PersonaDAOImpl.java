@@ -21,6 +21,10 @@ public class PersonaDAOImpl implements PersonaDAO
 			+ "mail = ?, fechanac = ?, calle = ?, altura = ?, piso = ?, depto = ?, idlocalidad = ?, idcontacto = ?" 
 			+ " WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	private static final String localidad="SELECT * FROM personas WHERE idlocalidad=?";
+	private static final String localidad2="SELECT COUNT(*) FROM personas WHERE idlocalidad=?";
+	private static final String tipoContacto="SELECT COUNT(*) FROM personas WHERE IdContacto=?";
+
 	private static final Conexion conexion = Conexion.getConexion();
 	
 	public boolean insert(PersonaDTO persona)
@@ -149,4 +153,104 @@ public class PersonaDAOImpl implements PersonaDAO
 		}
 		return personas;
 	}
+	
+	public int cantidadLocalidad(int id)
+	{
+		PreparedStatement statement;
+		ResultSet resultSet; //Guarda el resultado de la query
+	    int cantidad=0;
+	    try 
+		{
+	    statement = conexion.getSQLConexion().prepareStatement(localidad2);
+		statement.setInt(1, id);
+		resultSet = statement.executeQuery();
+		if(resultSet.next())
+			{
+		 cantidad=resultSet.getInt(1);
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally //Se ejecuta siempre
+		{
+			conexion.cerrarConexion();
+		}
+	    
+	    return cantidad;
+	}
+
+
+		public List<PersonaDTO> readPorLocalidad(int id) {
+			PreparedStatement statement;
+			ResultSet resultSet; //Guarda el resultado de la query
+			ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
+			try 
+			{
+				statement = conexion.getSQLConexion().prepareStatement(localidad);
+				statement.setInt(1, id);
+				resultSet = statement.executeQuery();
+				//tengo que modificar esto!!!
+			
+				while(resultSet.next())
+				{
+					
+					personas.add(new PersonaDTO(resultSet.getInt("idPersona"), 
+							resultSet.getString("Nombre"), 
+							resultSet.getString("Apellido"),
+							resultSet.getString("Telefono"),
+							resultSet.getString("Mail"),
+							resultSet.getDate("FechaNac"),
+							resultSet.getString("Calle"),
+							resultSet.getString("Altura"),
+							resultSet.getString("Piso"),
+							resultSet.getString("Depto"),
+						   new LocalidadDAOImpl().read(resultSet.getInt("idLocalidad")),
+							new TipoContactoDAOImpl().read(resultSet.getInt("idContacto"))
+							));
+				}	
+					
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			finally //Se ejecuta siempre
+			{
+				conexion.cerrarConexion();
+			}
+			return personas;
+		}
+		
+		
+		public int cantidadTipoContacto(int id)
+		{
+			PreparedStatement statement;
+			ResultSet resultSet; //Guarda el resultado de la query
+		    int cantidad=0;
+		    try 
+		 	{
+		     statement = conexion.getSQLConexion().prepareStatement(tipoContacto);
+		 	statement.setInt(1, id);
+		 	resultSet = statement.executeQuery();
+		 	if(resultSet.next())
+		 		{
+		 	 cantidad=resultSet.getInt(1);
+		 		}
+		 	}
+		 	catch (SQLException e) 
+		 	{
+		 		e.printStackTrace();
+		 	}
+		 	finally //Se ejecuta siempre
+		 	{
+		 		conexion.cerrarConexion();
+		 	}
+		     
+		     return cantidad;   
+			
+		}
+
+
 }

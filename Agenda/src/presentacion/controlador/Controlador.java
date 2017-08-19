@@ -287,8 +287,7 @@ public class Controlador implements ActionListener {
 				this.agenda.agregarLocalidad(nuevaLocalidad);
 				this.ventanaLocalidad.dispose();
 			}
-
-		// aca agrega una persona.. no lo probe todavia!
+				// aca agrega una persona.. no lo probe todavia!
 			else if (e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
 
 				LocalidadDTO localidad = (LocalidadDTO) ventanaPersona
@@ -319,6 +318,52 @@ public class Controlador implements ActionListener {
 						}			
 
 			}
+		//eliminar localidad y tipo de contacto
+			if (this.ventanaEliminarLoc != null && e.getSource() == this.ventanaEliminarLoc.getBtnEliminar())
+			{
+				if(this.ventanaEliminarLoc.isEliminaLoc()==true)
+					
+					
+				
+					{
+						int cantidad=this.agenda.cantidadLocalidad((int)((LocalidadDTO) ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).getIdLocalidad());
+						if((cantidad==0))
+						{
+							
+						this.agenda.borrarLocalidad(((LocalidadDTO)ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).getIdLocalidad());
+						setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).toString()+" fue eliminada correctamente.");
+						this.llenarTabla();
+
+						}
+						else
+						{
+							setWarningMsj((ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).toString()+" no se puede eliminar ya que se encuentra en uso.");
+
+		 				}
+					}
+					else
+						
+						
+					{
+						int cantidad=this.agenda.cantidadTipoContacto((int)((TipoContactoDTO) ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).getIdTipoContacto());
+						if((cantidad==0))
+						{
+							this.agenda.borrarTipoContacto(	((TipoContactoDTO)ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).getIdTipoContacto());
+							setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).toString()+" fue eliminada correctamente.");
+							this.llenarTabla();
+
+						}
+						else
+						{
+							setWarningMsj((ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem()).toString()+" no se puede eliminar ya que se encuentra en uso.");
+
+						}
+					}
+				this.ventanaEliminarLoc.dispose();
+			}	
+
+
+
 		
 			//editar un contacto + validacion
 			else 
@@ -356,7 +401,8 @@ public class Controlador implements ActionListener {
 					 JOptionPane.showMessageDialog(this.vista.getFrame(), "Seleccione un contacto.");
 				}
 			}
-
+		
+		
 
 
 

@@ -42,6 +42,19 @@ public class Agenda
 	public void actualizarPersona(PersonaDTO persona_a_actualizar) {
 		persona.update(persona_a_actualizar);
 	}
+	public int cantidadTipoContacto(int id)
+	{
+	
+	return	persona.cantidadTipoContacto(id);
+
+	}
+
+	public int cantidadLocalidad(int id)
+
+	{
+		return persona.cantidadLocalidad(id);
+	}
+
 	
 	public void validarPersona(PersonaDTO persona) {
 		
