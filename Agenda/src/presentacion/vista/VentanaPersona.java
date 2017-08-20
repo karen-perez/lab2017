@@ -193,10 +193,7 @@ public class VentanaPersona extends JFrame
 		getTextPiso().setText(personaAEditar.getPiso());
 		getTextDepto().setText(personaAEditar.getDepto());
 		getListaLocalidades().setSelectedItem(new LocalidadDTO(personaAEditar.getLocalidad().getIdLocalidad(), personaAEditar.getLocalidad().getLocalidad()));
-		getListaTipoContacto().setSelectedItem(new TipoContactoDTO(personaAEditar.getTipocontacto().getIdTipoContacto(), personaAEditar.getTipocontacto().getTipoContacto()));
-		
-		
-		
+		getListaTipoContacto().setSelectedItem(new TipoContactoDTO(personaAEditar.getTipocontacto().getIdTipoContacto(), personaAEditar.getTipocontacto().getTipoContacto()));				
 	}
 	public boolean isEditar() {
 		return editar;
@@ -310,10 +307,6 @@ public class VentanaPersona extends JFrame
 		return persona_a_editar;
 	}
 
-
-
-	
-	
 	public void setBtnAgregarPersona(JButton btnAgregarPersona) {
 		this.btnAgregarPersona = btnAgregarPersona;
 	}

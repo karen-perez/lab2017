@@ -86,7 +86,6 @@ public class Agenda
 
 	private boolean mailValido(String email) {
 		boolean status = false;
-		//System.out.println(email);
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 		Pattern pattern = Pattern.compile(ePattern);
 		Matcher matcher = pattern.matcher(email);
@@ -97,36 +96,21 @@ public class Agenda
 		}
 		return status;
 	}
-	
-//	public void ActualizarContacto(PersonaDTO Persona_a_actualizar) 
-//	{
-//		persona.update(Persona_a_actualizar);
-//	}
-//	
+
 	public List<PersonaDTO> obtenerPersonas()
 	{
 		return persona.readAll();		
 	}
 	
-//	public List<PersonaDTO> obtenerPersonasXLocalidad(int id)
-//	{
-//		return persona.readPorLocalidad(id);
-//	}
-	
 	public void agregarLocalidad(LocalidadDTO nuevaLocalidad)
 	{
-		
+		validarLocalidad(nuevaLocalidad);
 		localidad.insert(nuevaLocalidad);
 	}
 
-//	public int cantidadTipoContacto(int id)
-//	{
-//	
-//	return	persona.cantidadTipoContacto(id);
-//
-//	}
 	public void ActualizarLocalidad(LocalidadDTO Localidad_a_actualizar) 
 	{
+		validarLocalidad(Localidad_a_actualizar);
 		localidad.update(Localidad_a_actualizar);
 	}
 	public void borrarLocalidad(int Localidad_a_eliminar) 
@@ -134,13 +118,11 @@ public class Agenda
 		localidad.delete(Localidad_a_eliminar);
 	}
 	
-//	public int cantidadLocalidad(int id)
-//
-//	{
-//		return persona.cantidadLocalidad(id);
-//	}
-	
-
+	private void validarLocalidad(LocalidadDTO localidad) {
+		if(localidad.getLocalidad().equals("")) {
+			throw new IllegalArgumentException("La localidad tiene que tener un Nombre.");
+		}
+	}
 	
 	public List<LocalidadDTO> obtenerLocalidades()
 	{

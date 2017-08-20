@@ -85,28 +85,32 @@ public class Controlador implements ActionListener {
 		this.vista.show();
 	}
 
+	public void abrirVentanaPersona(PersonaDTO persona) {
+		DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+		localidadModel.addElement(new LocalidadDTO(0, ""));
+		for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
+			localidadModel.addElement(loc);
+		}
+		DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+		tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
+		for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
+			tipoContactoModel.addElement(tc);
+		}
+
+		this.ventanaPersona = new VentanaPersona(this, localidadModel,
+				tipoContactoModel, persona);
+		this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
+		this.ventanaPersona.getListaTipoContacto().setModel(
+				tipoContactoModel);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		// aca se abre el menu de agregar o presionando el boton de agregar,
 		// ambos abren la ventana para agregar un nuevo contacto
 		if (e.getSource() == this.vista.getBtnAgregar()
 				|| e.getSource() == this.vista.getMntmContacto()) {
-			DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
-			localidadModel.addElement(new LocalidadDTO(0, ""));
-			for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
-				localidadModel.addElement(loc);
-			}
-
-			DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
-			tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
-			for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
-				tipoContactoModel.addElement(tc);
-			}
-
-			this.ventanaPersona = new VentanaPersona(this, localidadModel,
-					tipoContactoModel, null);
-			this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
-			this.ventanaPersona.getListaTipoContacto().setModel(
-					tipoContactoModel);
+			abrirVentanaPersona(null);
+			
 		} else if (e.getSource() == this.vista.getBtnEditar()
 				|| e.getSource() == this.vista.getMntmContacto_1()) {
 			
@@ -115,36 +119,16 @@ public class Controlador implements ActionListener {
 				int fila_seleccionada = this.vista.getTablaPersonas()
 						.getSelectedRows()[0];
 				PersonaDTO persona_seleccionada = this.personas_en_tabla
-						.get(fila_seleccionada);
-
-				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
-				localidadModel.addElement(new LocalidadDTO(0, ""));
-				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
-					localidadModel.addElement(loc);
-				}
-
-				DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
-				tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
-				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
-					tipoContactoModel.addElement(tc);
-				}
-				this.ventanaPersona = new VentanaPersona(this, localidadModel,
-						tipoContactoModel, persona_seleccionada);
-				this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
-				this.ventanaPersona.getListaTipoContacto().setModel(
-						tipoContactoModel);
+						.get(fila_seleccionada);				
 				
-				
+				abrirVentanaPersona(persona_seleccionada);				
 				this.ventanaPersona.getListaLocalidades().setSelectedItem(new LocalidadDTO(persona_seleccionada.getLocalidad().getIdLocalidad(), persona_seleccionada.getLocalidad().getLocalidad()));
-				this.ventanaPersona.getListaTipoContacto().setSelectedItem(new TipoContactoDTO(persona_seleccionada.getTipocontacto().getIdTipoContacto(), persona_seleccionada.getTipocontacto().getTipoContacto()));
-				
+				this.ventanaPersona.getListaTipoContacto().setSelectedItem(new TipoContactoDTO(persona_seleccionada.getTipocontacto().getIdTipoContacto(), persona_seleccionada.getTipocontacto().getTipoContacto()));				
 				
 			} else {
 				JOptionPane.showMessageDialog(this.vista.getFrame(),
 						"Seleccione un contacto.");
-			}
-			
-			
+			}						
 		}
 		// elimina un contacto
 		else if (e.getSource() == this.vista.getBtnBorrar()
@@ -164,7 +148,6 @@ public class Controlador implements ActionListener {
 						"Seleccione un contacto.");
 			}
 		}
-
 		// ingresar un nuevo tipo de contacto(validacion)
 		else if (this.ventanaTipoContacto != null
 				&& e.getSource() == this.ventanaTipoContacto.getBtnAgregar()) {
