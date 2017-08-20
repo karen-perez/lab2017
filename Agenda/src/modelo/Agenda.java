@@ -1,6 +1,8 @@
 package modelo;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
@@ -40,6 +42,7 @@ public class Agenda
 	}
 	
 	public void actualizarPersona(PersonaDTO persona_a_actualizar) {
+		validarPersona(persona_a_actualizar);
 		persona.update(persona_a_actualizar);
 	}
 	public int cantidadTipoContacto(int id)
@@ -76,8 +79,25 @@ public class Agenda
 		if(persona.getFechanac() == null) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
 		}	
+		if(persona.getMail().trim().length() > 0 && !mailValido(persona.getMail())) {
+			throw new IllegalArgumentException("El mail no tiene un formato valido.");
+		}
 	}
 
+	private boolean mailValido(String email) {
+		boolean status = false;
+		//System.out.println(email);
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		Pattern pattern = Pattern.compile(ePattern);
+		Matcher matcher = pattern.matcher(email);
+		if (matcher.matches()) {
+			status = true;
+		} else {
+			status = false;
+		}
+		return status;
+	}
+	
 //	public void ActualizarContacto(PersonaDTO Persona_a_actualizar) 
 //	{
 //		persona.update(Persona_a_actualizar);

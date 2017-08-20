@@ -4,13 +4,9 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaEliminarLoc;
@@ -434,10 +430,18 @@ public class Controlador implements ActionListener {
 				persona_a_editar.setLocalidad(localidad);
 				persona_a_editar.setTipocontacto(TipoContacto);
 
-				this.agenda.actualizarPersona(persona_a_editar);
-				setExitoMsj("Modificado con exito!");
-				this.llenarTabla();
-				this.ventanaPersona.dispose();
+				
+				
+				try {
+					this.agenda.actualizarPersona(persona_a_editar);
+					setExitoMsj("Modificado con exito!");
+					this.llenarTabla();
+					this.ventanaPersona.dispose();
+				} catch (Exception excepcionAgregarPersona) {
+					JOptionPane.showMessageDialog(this.ventanaPersona,
+							excepcionAgregarPersona.getMessage());
+				}
+				
 
 			} else {
 				JOptionPane.showMessageDialog(this.vista.getFrame(),
@@ -445,20 +449,6 @@ public class Controlador implements ActionListener {
 			}
 		}
 
-	}
-
-	private boolean mailValido(String email) {
-		boolean status = false;
-		System.out.println(email);
-		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-		Pattern pattern = Pattern.compile(ePattern);
-		Matcher matcher = pattern.matcher(email);
-		if (matcher.matches()) {
-			status = true;
-		} else {
-			status = false;
-		}
-		return status;
 	}
 
 	public static void setWarningMsj(String text) {
