@@ -122,16 +122,27 @@ public class Controlador implements ActionListener {
 						.get(fila_seleccionada);
 
 				DefaultComboBoxModel<LocalidadDTO> localidadModel = new DefaultComboBoxModel<LocalidadDTO>();
+				localidadModel.addElement(new LocalidadDTO(0, ""));
 				for (LocalidadDTO loc : agenda.obtenerLocalidades()) {
 					localidadModel.addElement(loc);
 				}
 
 				DefaultComboBoxModel<TipoContactoDTO> tipoContactoModel = new DefaultComboBoxModel<TipoContactoDTO>();
+				tipoContactoModel.addElement(new TipoContactoDTO(0, ""));
 				for (TipoContactoDTO tc : agenda.obtenerTipoContacto()) {
 					tipoContactoModel.addElement(tc);
 				}
 				this.ventanaPersona = new VentanaPersona(this, localidadModel,
 						tipoContactoModel, persona_seleccionada);
+				this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
+				this.ventanaPersona.getListaTipoContacto().setModel(
+						tipoContactoModel);
+				
+				
+				this.ventanaPersona.getListaLocalidades().setSelectedItem(new LocalidadDTO(persona_seleccionada.getLocalidad().getIdLocalidad(), persona_seleccionada.getLocalidad().getLocalidad()));
+				this.ventanaPersona.getListaTipoContacto().setSelectedItem(new TipoContactoDTO(persona_seleccionada.getTipocontacto().getIdTipoContacto(), persona_seleccionada.getTipocontacto().getTipoContacto()));
+				
+				
 			} else {
 				JOptionPane.showMessageDialog(this.vista.getFrame(),
 						"Seleccione un contacto.");

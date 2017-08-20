@@ -201,8 +201,8 @@ public class VentanaPersona extends JFrame
 		getTextAltura().setText(personaAEditar.getAltura());
 		getTextPiso().setText(personaAEditar.getPiso());
 		getTextDepto().setText(personaAEditar.getDepto());
-		getListaLocalidades().setSelectedItem(personaAEditar.getLocalidad());
-		getListaTipoContacto().setSelectedItem(personaAEditar.getTipocontacto());
+		getListaLocalidades().setSelectedItem(new LocalidadDTO(personaAEditar.getLocalidad().getIdLocalidad(), personaAEditar.getLocalidad().getLocalidad()));
+		getListaTipoContacto().setSelectedItem(new TipoContactoDTO(personaAEditar.getTipocontacto().getIdTipoContacto(), personaAEditar.getTipocontacto().getTipoContacto()));
 		
 		
 		
