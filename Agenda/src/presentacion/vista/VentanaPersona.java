@@ -41,7 +41,7 @@ public class VentanaPersona extends JFrame
 	private JComboBox <TipoContactoDTO> listaTipoContacto;
 	private boolean editar=false;
 	private JButton btnActualizarC;
-
+	
 
 	public VentanaPersona(Controlador controlador, DefaultComboBoxModel<LocalidadDTO> localidades, 
 			DefaultComboBoxModel<TipoContactoDTO> tipoContacto, PersonaDTO personaAmodificar) 
@@ -187,6 +187,8 @@ public class VentanaPersona extends JFrame
 		if (personaAmodificar != null) {
 			editar=true;
 			CargarDatosPersona(personaAmodificar);
+		} else {
+			editar = false;
 		}
 		
 		this.setVisible(true);

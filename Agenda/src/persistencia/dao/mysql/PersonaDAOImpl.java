@@ -17,9 +17,9 @@ public class PersonaDAOImpl implements PersonaDAO
 			+ "mail, fechanac, calle, altura, piso, depto, idlocalidad, idcontacto ) " 
 			+ "VALUES(?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String update = "UPDATE personas SET nombre = ?, apellido = ?, telefono, = ?" 
-			+ "mail = ?, fechanac = ?, calle = ?, altura = ?, piso = ?, depto = ?, idlocalidad = ?, idcontacto = ?" 
-			+ " WHERE idPersona = ?";
+	private static final String update = "UPDATE personas SET nombre = ?, apellido = ?, telefono = ?, " 
+			+ "mail = ?, fechanac = ?, calle = ?, altura = ?, piso = ?, depto = ?, idlocalidad = ?, idcontacto = ? " 
+			+ "WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final String localidad="SELECT * FROM personas WHERE idlocalidad=?";
 	private static final String localidad2="SELECT COUNT(*) FROM personas WHERE idlocalidad=?";
