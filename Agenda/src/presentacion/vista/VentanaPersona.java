@@ -1,22 +1,15 @@
 package presentacion.vista;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import presentacion.controlador.Controlador;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import com.toedter.calendar.JCalendar;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
-
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
 import dto.TipoContactoDTO;
@@ -170,15 +163,11 @@ public class VentanaPersona extends JFrame
 		dateChooser.setBounds(74, 294, 154, 20);
 		panel.add(dateChooser);
 		
-		/*JComboBox listaTipoContacto = new JComboBox();
-		listaTipoContacto.setModel(new DefaultComboBoxModel(new String[] {"", "Amigos", "Familia", "Trabajo", "Universidad"}));*/
 		listaTipoContacto = new JComboBox<TipoContactoDTO>();
 		listaTipoContacto.setToolTipText("");
 		listaTipoContacto.setBounds(395, 207, 164, 20);
 		panel.add(listaTipoContacto);
-		
-		//JComboBox listaLocalidades = new JComboBox();
-		//listaLocalidades.setModel(new DefaultComboBoxModel(new String[] {"", "San Miguel", "Bella Vista"}));
+
 		listaLocalidades = new JComboBox<LocalidadDTO>();
 		listaLocalidades.setBounds(395, 152, 164, 20);
 		panel.add(listaLocalidades);		
