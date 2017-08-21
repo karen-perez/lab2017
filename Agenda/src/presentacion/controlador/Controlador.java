@@ -3,6 +3,7 @@ package presentacion.controlador;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
@@ -293,7 +294,7 @@ public class Controlador implements ActionListener {
 			this.agenda.agregarLocalidad(nuevaLocalidad);
 			this.ventanaLocalidad.dispose();
 		}
-		// aca agrega una persona.. no lo probe todavia!
+		// aca agrega una persona..
 		else if (this.ventanaPersona != null && 
 				e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
 
@@ -302,8 +303,8 @@ public class Controlador implements ActionListener {
 			TipoContactoDTO TipoContacto = (TipoContactoDTO) ventanaPersona
 					.getListaTipoContacto().getSelectedItem();
 
-			java.sql.Date fecha = this.ventanaPersona.getDateChooser()
-					.getDate() != null ? new java.sql.Date(this.ventanaPersona
+			java.sql.Date fecha = new SimpleDateFormat("dd-MM-yyyy").format(this.ventanaPersona.getDateChooser()
+					.getDate()) != null ? new java.sql.Date(this.ventanaPersona
 					.getDateChooser().getDate().getTime()) : null;
 			PersonaDTO nuevaPersona = new PersonaDTO(0, this.ventanaPersona
 					.getTxtNombre().getText(), this.ventanaPersona
