@@ -294,7 +294,8 @@ public class Controlador implements ActionListener {
 			this.ventanaLocalidad.dispose();
 		}
 		// aca agrega una persona.. no lo probe todavia!
-		else if (e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
+		else if (this.ventanaPersona != null && 
+				e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
 
 			LocalidadDTO localidad = (LocalidadDTO) ventanaPersona
 					.getListaLocalidades().getSelectedItem();
