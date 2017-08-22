@@ -1,16 +1,14 @@
 package presentacion.vista;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Panel;
 import javax.swing.JTextField;
-
 import presentacion.controlador.Controlador;
-import java.awt.Button;
-import java.awt.Label;
 import java.awt.SystemColor;
 
 public class VentanaTipoContacto extends JFrame {
@@ -22,7 +20,7 @@ public class VentanaTipoContacto extends JFrame {
 	private JPanel contentPane;
 	private JTextField textTipoContacto;
 	private  Controlador controlador;
-	private Button btnAgregar; 
+	private JButton btnAgregar; 
 
 	/**
 	 * Launch the application.
@@ -65,12 +63,12 @@ public class VentanaTipoContacto extends JFrame {
 		panel.add(textTipoContacto);
 		textTipoContacto.setColumns(10);
 		
-		btnAgregar = new Button("Agregar");
+		btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(this.controlador);
-		btnAgregar.setBounds(233, 185, 79, 24);
+		btnAgregar.setBounds(144, 163, 97, 25);
 		panel.add(btnAgregar);
 		
-		Label lblTipoContacto = new Label("Tipo de Contacto:");
+		JLabel lblTipoContacto = new JLabel("Tipo de Contacto:");
 		lblTipoContacto.setBounds(21, 66, 116, 24);
 		panel.add(lblTipoContacto);
 		this.setVisible(true);
@@ -84,11 +82,11 @@ public class VentanaTipoContacto extends JFrame {
 		this.textTipoContacto = textTipoContacto;
 	}
 
-	public Button getBtnAgregar() {
+	public JButton getBtnAgregar() {
 		return btnAgregar;
 	}
 
-	public void setBtnAgregar(Button btnAgregar) {
+	public void setBtnAgregar(JButton btnAgregar) {
 		this.btnAgregar = btnAgregar;
 	}
 	
