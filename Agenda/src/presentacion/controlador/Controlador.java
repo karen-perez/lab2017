@@ -4,13 +4,10 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaEliminarLoc;
@@ -186,7 +183,7 @@ public class Controlador implements ActionListener {
 				} else {
 					TipoContactoDTO nuevoTC = new TipoContactoDTO(
 							((TipoContactoDTO) ventanaModificar
-									.getComboBoxLocalidades().getSelectedItem())
+									.getComboBoxTipoContacto().getSelectedItem())
 									.getIdTipoContacto(),
 							this.ventanaModificar.getTextNuevoModificado()
 									.getText());
@@ -233,7 +230,6 @@ public class Controlador implements ActionListener {
 
 			this.ventanaModificar = new VentanaModificar(this,
 					localidadModel, null);
-
 		}
 
 		// elimina una localidad
@@ -304,8 +300,8 @@ public class Controlador implements ActionListener {
 			TipoContactoDTO TipoContacto = (TipoContactoDTO) ventanaPersona
 					.getListaTipoContacto().getSelectedItem();
 
-			java.sql.Date fecha = new SimpleDateFormat("dd-MM-yyyy").format(this.ventanaPersona.getDateChooser()
-					.getDate()) != null ? new java.sql.Date(this.ventanaPersona
+			java.sql.Date fecha = this.ventanaPersona.getDateChooser()
+					.getDate() != null ? new java.sql.Date(this.ventanaPersona
 					.getDateChooser().getDate().getTime()) : null;
 			PersonaDTO nuevaPersona = new PersonaDTO(0, this.ventanaPersona
 					.getTxtNombre().getText(), this.ventanaPersona
@@ -415,9 +411,7 @@ public class Controlador implements ActionListener {
 						.getText());
 				persona_a_editar.setLocalidad(localidad);
 				persona_a_editar.setTipocontacto(TipoContacto);
-
-				
-				
+							
 				try {
 					this.agenda.actualizarPersona(persona_a_editar);
 					setExitoMsj("Modificado con exito!");
