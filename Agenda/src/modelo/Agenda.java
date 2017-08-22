@@ -59,7 +59,7 @@ public class Agenda
 	}
 
 	
-	public void validarPersona(PersonaDTO persona) {
+	void validarPersona(PersonaDTO persona) {
 		
 		if(persona.getNombre().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Nombre.");
@@ -84,7 +84,7 @@ public class Agenda
 		}
 	}
 
-	private boolean mailValido(String email) {
+	boolean mailValido(String email) {
 		boolean status = false;
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 		Pattern pattern = Pattern.compile(ePattern);
