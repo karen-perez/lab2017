@@ -108,7 +108,7 @@ public class Agenda
 		localidad.insert(nuevaLocalidad);
 	}
 
-	public void ActualizarLocalidad(LocalidadDTO Localidad_a_actualizar) 
+	public void actualizarLocalidad(LocalidadDTO Localidad_a_actualizar) 
 	{
 		validarLocalidad(Localidad_a_actualizar);
 		localidad.update(Localidad_a_actualizar);
@@ -120,7 +120,11 @@ public class Agenda
 	
 	private void validarLocalidad(LocalidadDTO localidad) {
 		if(localidad.getLocalidad().equals("")) {
-			throw new IllegalArgumentException("La localidad tiene que tener un Nombre.");
+			throw new IllegalArgumentException("La Localidad tiene que tener un Nombre.");
+		}
+		List<LocalidadDTO> localidades = obtenerLocalidades();
+		if(localidad.getIdLocalidad() == 0 && localidades.contains(localidad)) {
+			throw new IllegalArgumentException("La Localidad ingresada ya existe.");
 		}
 	}
 	
@@ -131,11 +135,23 @@ public class Agenda
 	
 	public void agregarTipoContacto(TipoContactoDTO nuevoTipoContacto)
 	{
+		validarTipoContacto(nuevoTipoContacto);
 		tipoContacto.insert(nuevoTipoContacto);
 	}
+	
+	private void validarTipoContacto(TipoContactoDTO tipoContacto) {
+		if(tipoContacto.getTipoContacto().equals("")) {
+			throw new IllegalArgumentException("El Tipo de Contacto tiene que tener un Nombre.");
+		}
+		List<TipoContactoDTO> tiposContacto = obtenerTipoContacto();
+		if(tipoContacto.getIdTipoContacto() == 0 && tiposContacto.contains(tipoContacto)) {
+			throw new IllegalArgumentException("El Tipo de Contacto ingresado ya existe.");
+		}		
+	}
 
-	public void ActualizarTipoContacto(TipoContactoDTO TipoContacto_a_actualizar) 
+	public void actualizarTipoContacto(TipoContactoDTO TipoContacto_a_actualizar) 
 	{
+		validarTipoContacto(TipoContacto_a_actualizar);
 		tipoContacto.update(TipoContacto_a_actualizar);
 	}
 	public void borrarTipoContacto(int TipoContacto_a_eliminar) 
