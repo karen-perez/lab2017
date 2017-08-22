@@ -47,12 +47,34 @@ public class AgendaTest {
 		assertTrue(tamanioInicial + 1 == tamanioFinal);		
 	}
 	
+	@Test 
+	public void actualizarLocalidadTest() {
+		
+		Agenda agenda = new Agenda();
+		LocalidadDTO localidad = agenda.obtenerLocalidades().get(0);
+		String loc = localidad.getLocalidad();
+		localidad.setLocalidad(loc + " ");
+		agenda.actualizarLocalidad(localidad);		
+		localidad = agenda.obtenerLocalidades().get(0);
+		assertFalse(loc.equals(localidad.getLocalidad()));
+	}
+	
 	@Test (expected = IllegalArgumentException.class)
 	public void agregarLocalidadVaciaTest() {
 		
 		LocalidadDTO localidad = new LocalidadDTO(0, "");
 		Agenda agenda = new Agenda();		
 		agenda.agregarLocalidad(localidad);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void modificarLocalidadVaciaTest() {
+				
+		Agenda agenda = new Agenda();
+		LocalidadDTO localidad = agenda.obtenerLocalidades().get(0);
+		localidad.setLocalidad("");
+		agenda.actualizarLocalidad(localidad);
 	
 	}
 	
