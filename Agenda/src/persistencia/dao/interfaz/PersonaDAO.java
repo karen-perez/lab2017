@@ -14,4 +14,9 @@ public interface PersonaDAO
 	public boolean update(PersonaDTO persona);
 	
 	public List<PersonaDTO> readAll();
+	public List<PersonaDTO> readPorLocalidad(int id);
+
+	public int cantidadLocalidad(int id);
+	public int cantidadTipoContacto(int id);
+
 }
