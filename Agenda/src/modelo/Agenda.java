@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -78,7 +80,7 @@ public class Agenda
 		}
 		if(persona.getFechanac() == null) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
-		}	
+		}			
 		if(persona.getMail().trim().length() > 0 && !mailValido(persona.getMail())) {
 			throw new IllegalArgumentException("El mail no tiene un formato valido.");
 		}
