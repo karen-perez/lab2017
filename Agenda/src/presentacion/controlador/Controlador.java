@@ -1,13 +1,16 @@
 package presentacion.controlador;
 
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaEliminarLoc;
@@ -166,7 +169,7 @@ public class Controlador implements ActionListener {
 				&& e.getSource() == this.ventanaModificarLoc.getBtnModificar()) {
 			if (this.ventanaModificarLoc.getTextNuevaModificar().getText()
 					.isEmpty()) {
-				setWarningMsj("Por favor ingresar la nueva modificacion.");
+				//setWarningMsj("Por favor ingresar la nueva modificacion.");
 
 			} else {
 
@@ -177,7 +180,7 @@ public class Controlador implements ActionListener {
 									.getComboBoxLocalidades().getSelectedItem())
 									.getIdLocalidad(), this.ventanaModificarLoc
 									.getTextNuevoModificado().getText());
-					this.agenda.ActualizarLocalidad(nuevaLocalidad);
+					this.agenda.actualizarLocalidad(nuevaLocalidad);
 
 				} else {
 					TipoContactoDTO nuevoTC = new TipoContactoDTO(
@@ -186,7 +189,7 @@ public class Controlador implements ActionListener {
 									.getIdTipoContacto(),
 							this.ventanaModificarLoc.getTextNuevoModificado()
 									.getText());
-					this.agenda.ActualizarTipoContacto(nuevoTC);
+					this.agenda.actualizarTipoContacto(nuevoTC);
 				}
 				setExitoMsj("Modificado con exito!");
 				this.llenarTabla();
@@ -197,16 +200,16 @@ public class Controlador implements ActionListener {
 		// ingresar una nueva localidad(validacion)
 		else if (this.ventanaLocalidad != null
 				&& e.getSource() == this.ventanaLocalidad.getBtnAgregar()) {
-			if (ventanaLocalidad.getTextLocalidad().getText().isEmpty()) {
-				setWarningMsj("La localidad no puede estar vacia!");
 
-			} else {
-				LocalidadDTO nuevaLocalidad = new LocalidadDTO(0,
-						this.ventanaLocalidad.getTextLocalidad().getText());
+			
+			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0,
+					this.ventanaLocalidad.getTextLocalidad().getText());
+			try {
 				this.agenda.agregarLocalidad(nuevaLocalidad);
-				setExitoMsj("Agregada con exito!");
 				this.ventanaLocalidad.dispose();
-
+				setExitoMsj("Agregada con exito!");
+			} catch (Exception excepcionAgregarLocalidad) {
+				setWarningMsj(this.ventanaLocalidad, excepcionAgregarLocalidad.getMessage());
 			}
 
 		}
@@ -287,13 +290,7 @@ public class Controlador implements ActionListener {
 			reporte.mostrar();
 		}
 
-		else if (this.ventanaLocalidad != null
-				&& e.getSource() == this.ventanaLocalidad.getBtnAgregar()) {
-			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0,
-					this.ventanaLocalidad.getTextLocalidad().getText());
-			this.agenda.agregarLocalidad(nuevaLocalidad);
-			this.ventanaLocalidad.dispose();
-		}
+		
 		// aca agrega una persona..
 		else if (this.ventanaPersona != null && 
 				e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
@@ -322,7 +319,7 @@ public class Controlador implements ActionListener {
 				setExitoMsj("Agregado con exito!");
 				this.ventanaPersona.dispose();
 			} catch (Exception excepcionAgregarPersona) {
-				JOptionPane.showMessageDialog(this.ventanaPersona,
+				setWarningMsj(this.ventanaPersona,
 						excepcionAgregarPersona.getMessage());
 			}
 
@@ -349,7 +346,7 @@ public class Controlador implements ActionListener {
 					this.llenarTabla();
 
 				} else {
-					setWarningMsj((ventanaEliminarLoc.getComboBoxEliminar()
+					setWarningMsj(this.ventanaEliminarLoc, (ventanaEliminarLoc.getComboBoxEliminar()
 							.getSelectedItem()).toString()
 							+ " no se puede eliminar ya que se encuentra en uso.");
 
@@ -372,7 +369,7 @@ public class Controlador implements ActionListener {
 					this.llenarTabla();
 
 				} else {
-					setWarningMsj((ventanaEliminarLoc.getComboBoxEliminar()
+					setWarningMsj(this.ventanaEliminarLoc,(ventanaEliminarLoc.getComboBoxEliminar()
 							.getSelectedItem()).toString()
 							+ " no se puede eliminar ya que se encuentra en uso.");
 
@@ -423,7 +420,7 @@ public class Controlador implements ActionListener {
 					this.llenarTabla();
 					this.ventanaPersona.dispose();
 				} catch (Exception excepcionAgregarPersona) {
-					JOptionPane.showMessageDialog(this.ventanaPersona,
+					setWarningMsj(this.ventanaPersona,
 							excepcionAgregarPersona.getMessage());
 				}
 				
@@ -436,13 +433,10 @@ public class Controlador implements ActionListener {
 
 	}
 
-	public static void setWarningMsj(String text) {
-		Toolkit.getDefaultToolkit().beep();
-		JOptionPane optionPane = new JOptionPane(text,
-				JOptionPane.WARNING_MESSAGE);
-		JDialog dialog = optionPane.createDialog("Warning!");
-		dialog.setAlwaysOnTop(true);
-		dialog.setVisible(true);
+	public static void setWarningMsj(Frame frame, String text) {
+
+		JOptionPane.showMessageDialog(frame, text, "Warning!", JOptionPane.WARNING_MESSAGE);
+
 	}
 
 	public static void setExitoMsj(String text) {
