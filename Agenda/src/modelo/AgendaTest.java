@@ -3,10 +3,9 @@ package modelo;
 import static org.junit.Assert.*;
 
 import java.util.List;
-
 import org.junit.Test;
-
 import dto.LocalidadDTO;
+import dto.TipoContactoDTO;
 
 public class AgendaTest {
 
@@ -75,6 +74,74 @@ public class AgendaTest {
 		LocalidadDTO localidad = agenda.obtenerLocalidades().get(0);
 		localidad.setLocalidad("");
 		agenda.actualizarLocalidad(localidad);
+	
+	}
+	
+	@Test
+	public void obtenerTipoContactoTest() {
+		Agenda agenda = new Agenda();
+		List<TipoContactoDTO> tiposContacto = agenda.obtenerTipoContacto();
+		assertTrue(tiposContacto.size() > 0);
+	}
+	
+	@Test
+	public void eliminarTipoContactoTest() {
+		Agenda agenda = new Agenda();
+		List<TipoContactoDTO> tiposContacto = agenda.obtenerTipoContacto();
+		int tamanioInicial = tiposContacto.size();
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "Test");
+		for (TipoContactoDTO loc : tiposContacto) {
+			if(loc.getTipoContacto().equals("CONOCIDO")) {
+				tipoContacto = loc;
+			}
+		}
+		agenda.borrarTipoContacto(tipoContacto.getIdTipoContacto());
+		tiposContacto = agenda.obtenerTipoContacto();
+		int tamanioFinal = tiposContacto.size();
+		assertTrue(tamanioInicial - 1 == tamanioFinal);		
+	}
+	
+	@Test 
+	public void agregarTipoContactoTest() {
+		
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "CONOCIDO");
+		Agenda agenda = new Agenda();		
+		List<TipoContactoDTO> tiposContacto = agenda.obtenerTipoContacto();
+		int tamanioInicial = tiposContacto.size();
+		agenda.agregarTipoContacto(tipoContacto);
+		tiposContacto = agenda.obtenerTipoContacto();
+		int tamanioFinal = tiposContacto.size();
+		assertTrue(tamanioInicial + 1 == tamanioFinal);		
+	}
+	
+	@Test 
+	public void actualizarTipoContactoTest() {
+		
+		Agenda agenda = new Agenda();
+		TipoContactoDTO tipoContacto = agenda.obtenerTipoContacto().get(0);
+		String tipo = tipoContacto.getTipoContacto();
+		tipoContacto.setTipoContacto(tipo + " ");
+		agenda.actualizarTipoContacto(tipoContacto);		
+		tipoContacto = agenda.obtenerTipoContacto().get(0);
+		assertFalse(tipo.equals(tipoContacto.getTipoContacto()));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarTipoContactoVacioTest() {
+		
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "");
+		Agenda agenda = new Agenda();		
+		agenda.agregarTipoContacto(tipoContacto);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void modificarTipoContactoVacioTest() {
+				
+		Agenda agenda = new Agenda();
+		TipoContactoDTO tipoContacto = agenda.obtenerTipoContacto().get(0);
+		tipoContacto.setTipoContacto("");
+		agenda.actualizarTipoContacto(tipoContacto);
 	
 	}
 	
