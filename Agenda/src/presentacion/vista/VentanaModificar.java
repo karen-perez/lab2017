@@ -1,8 +1,6 @@
 package presentacion.vista;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,7 +25,8 @@ public class VentanaModificar extends JFrame {
 	private JTextField textNuevaModificar;
 	private JLabel lblSelecLocalidad;
 	private JLabel lblModificar;
-	private JComboBox  comboBoxModificar;
+	private JComboBox<LocalidadDTO>  comboBoxModificarLocalidad;
+	private JComboBox<TipoContactoDTO>  comboBoxModificarTipoContacto;
 	private JButton btnModificar;
 	private Controlador controlador;
 	private boolean modificoLoc;
@@ -74,18 +73,22 @@ public class VentanaModificar extends JFrame {
 		panel.add(textNuevaModificar);
 		textNuevaModificar.setColumns(10);
 		
-		comboBoxModificar = new JComboBox();
-		comboBoxModificar.setBounds(165, 48, 116, 22);
-		panel.add(comboBoxModificar);
+		
 		if(TipoContacto==null)
 		{
-		comboBoxModificar.setModel(localidades);//nuevo
-		modificoLoc = true;
+			comboBoxModificarLocalidad = new JComboBox<LocalidadDTO>();
+			comboBoxModificarLocalidad.setBounds(165, 48, 116, 22);
+			panel.add(comboBoxModificarLocalidad);
+			comboBoxModificarLocalidad.setModel(localidades);//nuevo
+			modificoLoc = true;
 		}
 		else
 		{
-			comboBoxModificar.setModel(TipoContacto);//nuevo
-		modificoLoc=false;
+			comboBoxModificarTipoContacto = new JComboBox<TipoContactoDTO>();
+			comboBoxModificarTipoContacto.setBounds(165, 48, 116, 22);
+			panel.add(comboBoxModificarTipoContacto);
+			comboBoxModificarTipoContacto.setModel(TipoContacto);//nuevo
+			modificoLoc=false;
 		}
 		
 		lblSelecLocalidad = new JLabel("Seleccionar ");
@@ -128,10 +131,13 @@ public class VentanaModificar extends JFrame {
 	}
 
 	public JComboBox <LocalidadDTO> getComboBoxLocalidades() {
-		return comboBoxModificar;
+		return comboBoxModificarLocalidad;
 	}
 	
-
+	public JComboBox <TipoContactoDTO> getComboBoxTipoContacto() {
+		return comboBoxModificarTipoContacto;
+	}
+	
 	public JTextField getTextNuevaModificar() {
 		return textNuevaModificar;
 	}
@@ -140,10 +146,14 @@ public class VentanaModificar extends JFrame {
 		this.textNuevaModificar = textNuevaModificar;
 	}
 
-	public void setComboBoxModificador(JComboBox comboBoxModificador) {
-		this.comboBoxModificar = comboBoxModificador;
+	public void setComboBoxLocalidad(JComboBox<LocalidadDTO> comboBoxModificador) {
+		this.comboBoxModificarLocalidad = comboBoxModificador;
 	}
 
+	public void setComboBoxTipoContacto(JComboBox<TipoContactoDTO> comboBoxModificador) {
+		this.comboBoxModificarTipoContacto = comboBoxModificador;
+	}
+	
 	public JButton getBtnModificar() {
 		return btnModificar;
 	}
