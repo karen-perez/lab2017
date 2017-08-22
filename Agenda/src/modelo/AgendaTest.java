@@ -68,6 +68,33 @@ public class AgendaTest {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void agregarLocalidadExistenteTest() {
+		
+		LocalidadDTO localidad = new LocalidadDTO(0, "Moreno");
+		Agenda agenda = new Agenda();		
+		agenda.agregarLocalidad(localidad);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarLocalidadExistenteConEspaciosTest() {
+		
+		LocalidadDTO localidad = new LocalidadDTO(0, "Moreno  ");
+		Agenda agenda = new Agenda();		
+		agenda.agregarLocalidad(localidad);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarLocalidadEspaciosVaciosTest() {
+		
+		LocalidadDTO localidad = new LocalidadDTO(0, "   ");
+		Agenda agenda = new Agenda();		
+		agenda.agregarLocalidad(localidad);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void modificarLocalidadVaciaTest() {
 				
 		Agenda agenda = new Agenda();
@@ -130,6 +157,33 @@ public class AgendaTest {
 	public void agregarTipoContactoVacioTest() {
 		
 		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "");
+		Agenda agenda = new Agenda();		
+		agenda.agregarTipoContacto(tipoContacto);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarTipoContactoExistenteTest() {
+		
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "CONOCIDO");
+		Agenda agenda = new Agenda();		
+		agenda.agregarTipoContacto(tipoContacto);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarTipoContactoExistenteConEspaciosTest() {
+		
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, " CONOCIDO ");
+		Agenda agenda = new Agenda();		
+		agenda.agregarTipoContacto(tipoContacto);
+	
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarTipoContactoEspaciosVaciosTest() {
+		
+		TipoContactoDTO tipoContacto = new TipoContactoDTO(0, "    ");
 		Agenda agenda = new Agenda();		
 		agenda.agregarTipoContacto(tipoContacto);
 	
