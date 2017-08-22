@@ -61,13 +61,13 @@ public class Agenda
 	
 	void validarPersona(PersonaDTO persona) {
 		
-		if(persona.getNombre().equals("")) {
+		if(persona.getNombre().trim().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Nombre.");
 		}
-		if(persona.getApellido().equals("")) {
+		if(persona.getApellido().trim().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Apellido.");
 		}		
-		if(persona.getTelefono().equals("")) {
+		if(persona.getTelefono().trim().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Teléfono.");
 		}
 		if(persona.getLocalidad().getLocalidad().equals("")) {
@@ -119,7 +119,7 @@ public class Agenda
 	}
 	
 	private void validarLocalidad(LocalidadDTO localidad) {
-		if(localidad.getLocalidad().equals("")) {
+		if(localidad.getLocalidad().trim().equals("")) {
 			throw new IllegalArgumentException("La Localidad tiene que tener un Nombre.");
 		}
 		List<LocalidadDTO> localidades = obtenerLocalidades();
@@ -140,7 +140,7 @@ public class Agenda
 	}
 	
 	private void validarTipoContacto(TipoContactoDTO tipoContacto) {
-		if(tipoContacto.getTipoContacto().equals("")) {
+		if(tipoContacto.getTipoContacto().trim().equals("")) {
 			throw new IllegalArgumentException("El Tipo de Contacto tiene que tener un Nombre.");
 		}
 		List<TipoContactoDTO> tiposContacto = obtenerTipoContacto();
