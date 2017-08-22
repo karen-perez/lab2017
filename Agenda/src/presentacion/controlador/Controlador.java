@@ -31,7 +31,7 @@ public class Controlador implements ActionListener {
 	private VentanaLocalidad ventanaLocalidad;
 	private VentanaTipoContacto ventanaTipoContacto;
 	private VentanaEliminarLoc ventanaEliminarLoc;
-	private VentanaModificar ventanaModificarLoc;
+	private VentanaModificar ventanaModificar;
 
 	public Controlador(Vista vista, Agenda agenda) {
 		this.vista = vista;
@@ -158,43 +158,47 @@ public class Controlador implements ActionListener {
 
 			TipoContactoDTO nuevoContacto = new TipoContactoDTO(0,
 					this.ventanaTipoContacto.getTextTipoContacto().getText());
-			this.agenda.agregarTipoContacto(nuevoContacto);
-			setExitoMsj("Agregado con exito!");
 
-			this.ventanaTipoContacto.dispose();
+			try {
+				this.agenda.agregarTipoContacto(nuevoContacto);
+				this.ventanaTipoContacto.dispose();
+				setExitoMsj("Agregada con exito!");
+			} catch (Exception excepcionAgregarTipoContacto) {
+				setWarningMsj(this.ventanaTipoContacto, excepcionAgregarTipoContacto.getMessage());
+			}
+			
 
 		}
 		// modificar localidad (validacion)
-		else if (this.ventanaModificarLoc != null
-				&& e.getSource() == this.ventanaModificarLoc.getBtnModificar()) {
-			if (this.ventanaModificarLoc.getTextNuevaModificar().getText()
-					.isEmpty()) {
-				//setWarningMsj("Por favor ingresar la nueva modificacion.");
-
-			} else {
-
-				if (this.ventanaModificarLoc.isModificoLoc() == true) {
+		else if (this.ventanaModificar != null
+				&& e.getSource() == this.ventanaModificar.getBtnModificar()) {
+			
+			try {
+				if (this.ventanaModificar.isModificoLoc() == true) {
 
 					LocalidadDTO nuevaLocalidad = new LocalidadDTO(
-							((LocalidadDTO) ventanaModificarLoc
+							((LocalidadDTO) ventanaModificar
 									.getComboBoxLocalidades().getSelectedItem())
-									.getIdLocalidad(), this.ventanaModificarLoc
+									.getIdLocalidad(), this.ventanaModificar
 									.getTextNuevoModificado().getText());
 					this.agenda.actualizarLocalidad(nuevaLocalidad);
 
 				} else {
 					TipoContactoDTO nuevoTC = new TipoContactoDTO(
-							((TipoContactoDTO) ventanaModificarLoc
+							((TipoContactoDTO) ventanaModificar
 									.getComboBoxLocalidades().getSelectedItem())
 									.getIdTipoContacto(),
-							this.ventanaModificarLoc.getTextNuevoModificado()
+							this.ventanaModificar.getTextNuevoModificado()
 									.getText());
 					this.agenda.actualizarTipoContacto(nuevoTC);
-				}
-				setExitoMsj("Modificado con exito!");
+				}				
 				this.llenarTabla();
-				this.ventanaModificarLoc.dispose();
+				this.ventanaModificar.dispose();
+				setExitoMsj("Modificado con exito!");
+			} catch (Exception excepcion) {
+				setWarningMsj(this.ventanaModificar, excepcion.getMessage());
 			}
+						
 		}
 
 		// ingresar una nueva localidad(validacion)
@@ -227,7 +231,7 @@ public class Controlador implements ActionListener {
 				localidadModel.addElement(loc);
 			}
 
-			this.ventanaModificarLoc = new VentanaModificar(this,
+			this.ventanaModificar = new VentanaModificar(this,
 					localidadModel, null);
 
 		}
@@ -257,7 +261,7 @@ public class Controlador implements ActionListener {
 				TipoContactoModel.addElement(con);
 			}
 
-			this.ventanaModificarLoc = new VentanaModificar(this, null,
+			this.ventanaModificar = new VentanaModificar(this, null,
 					TipoContactoModel);
 
 		}
