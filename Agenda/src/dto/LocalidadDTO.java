@@ -56,6 +56,8 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	LocalidadDTO other = (LocalidadDTO) obj;
+	if (localidad.toLowerCase().equals(other.localidad.toLowerCase()))
+		return true;	
 	if (idLocalidad != other.idLocalidad)
 		return false;	
 	return true;
