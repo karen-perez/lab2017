@@ -74,20 +74,16 @@ public class VentanaPersona extends JFrame
 		txtApellido.setColumns(10);
 		
 		if (personaAmodificar != null) { 
-			/*btnAgregarPersona = new JButton("Actualizar");
-			btnAgregarPersona.addActionListener(this.controlador);
-			btnAgregarPersona.setBounds(453, 269, 89, 23);
-			panel.add(btnAgregarPersona);
-				*/
-		btnActualizarC = new JButton("Actualizar");
-		btnActualizarC.addActionListener(this.controlador);
-		btnActualizarC.setBounds(278, 243, 97, 25);
-		panel.add(btnActualizarC);
+			
+			btnActualizarC = new JButton("Actualizar");
+			btnActualizarC.addActionListener(this.controlador);
+			btnActualizarC.setBounds(452, 326, 107, 25);
+			panel.add(btnActualizarC);
 		} 
 		else{
 			btnAgregarPersona = new JButton("Agregar");
 			btnAgregarPersona.addActionListener(this.controlador);
-			btnAgregarPersona.setBounds(452, 326, 107, 46);
+			btnAgregarPersona.setBounds(452, 326, 107, 25);
 			panel.add(btnAgregarPersona);
 			
 			
@@ -140,8 +136,8 @@ public class VentanaPersona extends JFrame
 		lblTipoDeContacto.setBounds(290, 207, 113, 14);
 		panel.add(lblTipoDeContacto);
 		
-		JLabel lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
-		lblFechaDeNacimiento.setBounds(84, 263, 154, 14);
+		JLabel lblFechaDeNacimiento = new JLabel("Fecha Nac.");
+		lblFechaDeNacimiento.setBounds(10, 260, 62, 14);
 		panel.add(lblFechaDeNacimiento);
 		
 		textDepto = new JTextField();
@@ -160,7 +156,7 @@ public class VentanaPersona extends JFrame
 		panel.add(textPiso);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(74, 294, 154, 20);
+		dateChooser.setBounds(74, 257, 154, 20);
 		panel.add(dateChooser);
 		
 		listaTipoContacto = new JComboBox<TipoContactoDTO>();
