@@ -55,7 +55,7 @@ public class TipoContactoDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		TipoContactoDTO other = (TipoContactoDTO) obj;
-		if (tipoContacto.toLowerCase().equals(other.tipoContacto.toLowerCase()))
+		if (tipoContacto.trim().toLowerCase().equals(other.tipoContacto.trim().toLowerCase()))
 			return true;
 		if (idTipoContacto != other.idTipoContacto)
 			return false;		
