@@ -154,7 +154,7 @@ public class AgendaTest {
 	
 		TipoContactoDTO tipoContacto = agenda().obtenerTipoContacto().get(0);
 		String tipo = tipoContacto.getTipoContacto();
-		tipoContacto.setTipoContacto(tipo + " ");
+		tipoContacto.setTipoContacto(tipo.trim() + " ");
 		agenda().actualizarTipoContacto(tipoContacto);		
 		tipoContacto = agenda().obtenerTipoContacto().get(0);
 		assertFalse(tipo.equals(tipoContacto.getTipoContacto()));

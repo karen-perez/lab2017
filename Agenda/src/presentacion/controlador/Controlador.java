@@ -73,11 +73,13 @@ public class Controlador implements ActionListener {
 			Object[] fila = { this.personas_en_tabla.get(i).getNombre(),
 					this.personas_en_tabla.get(i).getApellido(),
 					this.personas_en_tabla.get(i).getTelefono(),
-					/*this.personas_en_tabla.get(i).getCalle(),
-					this.personas_en_tabla.get(i).getAltura(),
-					this.personas_en_tabla.get(i).getPiso(),
-					this.personas_en_tabla.get(i).getDepto(),
-					this.personas_en_tabla.get(i).getLocalidad(),*/
+					/*
+					 * this.personas_en_tabla.get(i).getCalle(),
+					 * this.personas_en_tabla.get(i).getAltura(),
+					 * this.personas_en_tabla.get(i).getPiso(),
+					 * this.personas_en_tabla.get(i).getDepto(),
+					 * this.personas_en_tabla.get(i).getLocalidad(),
+					 */
 					this.personas_en_tabla.get(i).getMail(),
 					this.personas_en_tabla.get(i).getTipocontacto(),
 					this.personas_en_tabla.get(i).getFechanac(), };
@@ -101,42 +103,46 @@ public class Controlador implements ActionListener {
 		this.ventanaPersona = new VentanaPersona(this, localidadModel,
 				tipoContactoModel, persona);
 		this.ventanaPersona.getListaLocalidades().setModel(localidadModel);
-		this.ventanaPersona.getListaTipoContacto().setModel(
-				tipoContactoModel);
+		this.ventanaPersona.getListaTipoContacto().setModel(tipoContactoModel);
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		// aca se abre el menu de agregar o presionando el boton de agregar,
 		// ambos abren la ventana para agregar un nuevo contacto
 		if (e.getSource() == this.vista.getBtnAgregar()
 				|| e.getSource() == this.vista.getMntmContacto()) {
 			abrirVentanaPersona(null);
-			
+
 		} else if (e.getSource() == this.vista.getBtnEditar()
 				|| e.getSource() == this.vista.getMntmContacto_1()) {
-			
-			if (this.vista.getTablaPersonas()
-					.getSelectedRows().length > 0) {
+
+			if (this.vista.getTablaPersonas().getSelectedRows().length > 0) {
 				int fila_seleccionada = this.vista.getTablaPersonas()
 						.getSelectedRows()[0];
 				PersonaDTO persona_seleccionada = this.personas_en_tabla
-						.get(fila_seleccionada);				
-				
-				abrirVentanaPersona(persona_seleccionada);				
-				this.ventanaPersona.getListaLocalidades().setSelectedItem(new LocalidadDTO(persona_seleccionada.getLocalidad().getIdLocalidad(), persona_seleccionada.getLocalidad().getLocalidad()));
-				this.ventanaPersona.getListaTipoContacto().setSelectedItem(new TipoContactoDTO(persona_seleccionada.getTipocontacto().getIdTipoContacto(), persona_seleccionada.getTipocontacto().getTipoContacto()));				
-				
+						.get(fila_seleccionada);
+
+				abrirVentanaPersona(persona_seleccionada);
+				this.ventanaPersona.getListaLocalidades().setSelectedItem(
+						new LocalidadDTO(persona_seleccionada.getLocalidad()
+								.getIdLocalidad(), persona_seleccionada
+								.getLocalidad().getLocalidad()));
+				this.ventanaPersona.getListaTipoContacto().setSelectedItem(
+						new TipoContactoDTO(persona_seleccionada
+								.getTipocontacto().getIdTipoContacto(),
+								persona_seleccionada.getTipocontacto()
+										.getTipoContacto()));
+
 			} else {
 				JOptionPane.showMessageDialog(this.vista.getFrame(),
 						"Seleccione un contacto.");
-			}						
+			}
 		}
 		// elimina un contacto
 		else if (e.getSource() == this.vista.getBtnBorrar()
 				|| e.getSource() == this.vista.getMntmContacto_2()) {
-			
-			if (this.vista.getTablaPersonas()
-					.getSelectedRows().length > 0) {
+
+			if (this.vista.getTablaPersonas().getSelectedRows().length > 0) {
 				int[] filas_seleccionadas = this.vista.getTablaPersonas()
 						.getSelectedRows();
 				for (int fila : filas_seleccionadas) {
@@ -161,15 +167,15 @@ public class Controlador implements ActionListener {
 				this.ventanaTipoContacto.dispose();
 				setExitoMsj("Agregada con exito!");
 			} catch (Exception excepcionAgregarTipoContacto) {
-				setWarningMsj(this.ventanaTipoContacto, excepcionAgregarTipoContacto.getMessage());
+				setWarningMsj(this.ventanaTipoContacto,
+						excepcionAgregarTipoContacto.getMessage());
 			}
-			
 
 		}
 		// modificar localidad (validacion)
 		else if (this.ventanaModificar != null
 				&& e.getSource() == this.ventanaModificar.getBtnModificar()) {
-			
+
 			try {
 				if (this.ventanaModificar.isModificoLoc() == true) {
 
@@ -183,26 +189,25 @@ public class Controlador implements ActionListener {
 				} else {
 					TipoContactoDTO nuevoTC = new TipoContactoDTO(
 							((TipoContactoDTO) ventanaModificar
-									.getComboBoxTipoContacto().getSelectedItem())
-									.getIdTipoContacto(),
+									.getComboBoxTipoContacto()
+									.getSelectedItem()).getIdTipoContacto(),
 							this.ventanaModificar.getTextNuevoModificado()
 									.getText());
 					this.agenda.actualizarTipoContacto(nuevoTC);
-				}				
+				}
 				this.llenarTabla();
 				this.ventanaModificar.dispose();
 				setExitoMsj("Modificado con exito!");
 			} catch (Exception excepcion) {
 				setWarningMsj(this.ventanaModificar, excepcion.getMessage());
 			}
-						
+
 		}
 
 		// ingresar una nueva localidad(validacion)
 		else if (this.ventanaLocalidad != null
 				&& e.getSource() == this.ventanaLocalidad.getBtnAgregar()) {
 
-			
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0,
 					this.ventanaLocalidad.getTextLocalidad().getText());
 			try {
@@ -210,7 +215,8 @@ public class Controlador implements ActionListener {
 				this.ventanaLocalidad.dispose();
 				setExitoMsj("Agregada con exito!");
 			} catch (Exception excepcionAgregarLocalidad) {
-				setWarningMsj(this.ventanaLocalidad, excepcionAgregarLocalidad.getMessage());
+				setWarningMsj(this.ventanaLocalidad,
+						excepcionAgregarLocalidad.getMessage());
 			}
 
 		}
@@ -228,8 +234,8 @@ public class Controlador implements ActionListener {
 				localidadModel.addElement(loc);
 			}
 
-			this.ventanaModificar = new VentanaModificar(this,
-					localidadModel, null);
+			this.ventanaModificar = new VentanaModificar(this, localidadModel,
+					null);
 		}
 
 		// elimina una localidad
@@ -290,10 +296,9 @@ public class Controlador implements ActionListener {
 			reporte.mostrar();
 		}
 
-		
 		// aca agrega una persona..
-		else if (this.ventanaPersona != null && 
-				e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
+		else if (this.ventanaPersona != null
+				&& e.getSource() == this.ventanaPersona.getBtnAgregarPersona()) {
 
 			LocalidadDTO localidad = (LocalidadDTO) ventanaPersona
 					.getListaLocalidades().getSelectedItem();
@@ -330,49 +335,65 @@ public class Controlador implements ActionListener {
 			if (this.ventanaEliminarLoc.isEliminaLoc() == true)
 
 			{
-				int cantidad = this.agenda
-						.cantidadLocalidad((int) ((LocalidadDTO) ventanaEliminarLoc
-								.getComboBoxEliminar().getSelectedItem())
-								.getIdLocalidad());
-				if ((cantidad == 0)) {
 
-					this.agenda
-							.borrarLocalidad(((LocalidadDTO) ventanaEliminarLoc
+				if (ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem() == null) {
+					setWarningMsj(this.ventanaEliminarLoc,
+							"No hay localidad seleccionada.");
+				} else {
+
+					int cantidad = this.agenda
+							.cantidadLocalidad((int) ((LocalidadDTO) ventanaEliminarLoc
 									.getComboBoxEliminar().getSelectedItem())
 									.getIdLocalidad());
-					setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar()
-							.getSelectedItem()).toString()
-							+ " fue eliminada correctamente.");
-					this.llenarTabla();
+					if ((cantidad == 0)) {
 
-				} else {
-					setWarningMsj(this.ventanaEliminarLoc, (ventanaEliminarLoc.getComboBoxEliminar()
-							.getSelectedItem()).toString()
-							+ " no se puede eliminar ya que se encuentra en uso.");
+						this.agenda
+								.borrarLocalidad(((LocalidadDTO) ventanaEliminarLoc
+										.getComboBoxEliminar()
+										.getSelectedItem()).getIdLocalidad());
+						setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar()
+								.getSelectedItem()).toString()
+								+ " fue eliminada correctamente.");
+						this.llenarTabla();
 
+					} else {
+						setWarningMsj(
+								this.ventanaEliminarLoc,
+								(ventanaEliminarLoc.getComboBoxEliminar()
+										.getSelectedItem()).toString()
+										+ " no se puede eliminar ya que se encuentra en uso.");
+
+					}
 				}
 			} else
 
 			{
-				int cantidad = this.agenda
-						.cantidadTipoContacto((int) ((TipoContactoDTO) ventanaEliminarLoc
-								.getComboBoxEliminar().getSelectedItem())
-								.getIdTipoContacto());
-				if ((cantidad == 0)) {
-					this.agenda
-							.borrarTipoContacto(((TipoContactoDTO) ventanaEliminarLoc
+				if (ventanaEliminarLoc.getComboBoxEliminar().getSelectedItem() == null) {
+					setWarningMsj(this.ventanaEliminarLoc,
+							"No hay localidad seleccionada.");
+				} else {
+					int cantidad = this.agenda
+							.cantidadTipoContacto((int) ((TipoContactoDTO) ventanaEliminarLoc
 									.getComboBoxEliminar().getSelectedItem())
 									.getIdTipoContacto());
-					setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar()
-							.getSelectedItem()).toString()
-							+ " fue eliminada correctamente.");
-					this.llenarTabla();
-
-				} else {
-					setWarningMsj(this.ventanaEliminarLoc,(ventanaEliminarLoc.getComboBoxEliminar()
-							.getSelectedItem()).toString()
-							+ " no se puede eliminar ya que se encuentra en uso.");
-
+					if ((cantidad == 0)) {
+						this.agenda
+								.borrarTipoContacto(((TipoContactoDTO) ventanaEliminarLoc
+										.getComboBoxEliminar().getSelectedItem())
+										.getIdTipoContacto());
+						setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar()
+								.getSelectedItem()).toString()
+								+ " fue eliminada correctamente.");
+						this.llenarTabla();
+	
+					} else {
+						setWarningMsj(
+								this.ventanaEliminarLoc,
+								(ventanaEliminarLoc.getComboBoxEliminar()
+										.getSelectedItem()).toString()
+										+ " no se puede eliminar ya que se encuentra en uso.");
+	
+					}
 				}
 			}
 			this.ventanaEliminarLoc.dispose();
@@ -411,7 +432,7 @@ public class Controlador implements ActionListener {
 						.getText());
 				persona_a_editar.setLocalidad(localidad);
 				persona_a_editar.setTipocontacto(TipoContacto);
-							
+
 				try {
 					this.agenda.actualizarPersona(persona_a_editar);
 					setExitoMsj("Modificado con exito!");
@@ -421,7 +442,6 @@ public class Controlador implements ActionListener {
 					setWarningMsj(this.ventanaPersona,
 							excepcionAgregarPersona.getMessage());
 				}
-				
 
 			} else {
 				JOptionPane.showMessageDialog(this.vista.getFrame(),
@@ -433,7 +453,8 @@ public class Controlador implements ActionListener {
 
 	public static void setWarningMsj(Frame frame, String text) {
 
-		JOptionPane.showMessageDialog(frame, text, "Warning!", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(frame, text, "Warning!",
+				JOptionPane.WARNING_MESSAGE);
 
 	}
 

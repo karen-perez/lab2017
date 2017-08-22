@@ -1,5 +1,5 @@
-CREATE DATABASE `agenda`;
-USE agenda;
+CREATE DATABASE `tpi_g6`;
+USE tpi_g6;
 CREATE TABLE `localidades` 
 ( `idLocalidad` int(11) NOT NULL AUTO_INCREMENT,
   `Localidad` varchar(45) NOT NULL,
