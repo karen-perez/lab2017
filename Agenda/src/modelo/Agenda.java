@@ -72,10 +72,10 @@ public class Agenda
 		if(persona.getTelefono().trim().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Teléfono.");
 		}
-		if(persona.getLocalidad().getLocalidad().equals("")) {
+		if(persona.getLocalidad() != null && persona.getLocalidad().getLocalidad().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Localidad.");
 		}
-		if(persona.getTipocontacto().getTipoContacto().equals("")) {
+		if(persona.getTipocontacto() != null && persona.getTipocontacto().getTipoContacto().equals("")) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Tipo de contacto.");
 		}
 		if(persona.getFechanac() == null) {

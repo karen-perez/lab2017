@@ -2,13 +2,45 @@ package modelo;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
 import org.junit.Test;
+
 import dto.LocalidadDTO;
+import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 
 public class AgendaTest {
 
+	private static Agenda agenda;
+	
+	private static Agenda agendaInstance() {
+		if(agenda == null) {
+			return new Agenda();
+		} else {
+			return agenda;
+		}
+	}
+	
+	private PersonaDTO cargarPersona() {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+        	Date parsed = format.parse("01/03/1987");
+        	java.sql.Date sql = new java.sql.Date(parsed.getTime());
+    		PersonaDTO persona = new PersonaDTO(0, "Prueba", "Prueba", 
+    				"01146663333", "prueba@test.com.ar", sql, "Prueba", "123", "1", "B", 
+    				new LocalidadDTO(1, ""), new TipoContactoDTO(1, ""));
+    		return persona;
+		} catch (Exception e) {
+			return null;
+		}
+		
+        
+	}
+	
 	@Test
 	public void obtenerLocalidadesTest() {
 		Agenda agenda = new Agenda();
@@ -198,5 +230,94 @@ public class AgendaTest {
 		agenda.actualizarTipoContacto(tipoContacto);
 	
 	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinNombreTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setNombre("");
+		agendaInstance().agregarPersona(persona);
+	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinApellidoTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setApellido("");
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinTelefonoTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setTelefono("");
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinFechaNacimientoTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setFechanac(null);
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinLocalidadTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setLocalidad(null);
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoSinTipoContactoTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setTipocontacto(null);
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoMailSinArrobaTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setMail("pruebasinarroba");
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoMailArrobaFinalTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setMail("pruebaarrobafinal.com@");
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoMailArrobaInicioTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setMail("@pruebaarrobainicio.com");
+		agendaInstance().agregarPersona(persona);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void agregarContactoMailSinPuntoComTest() {
+		PersonaDTO persona = cargarPersona();
+		persona.setMail("prueba@sinpuntocom");
+		agendaInstance().agregarPersona(persona);
+	}	
+	
+	
+	@Test
+	public void agregarContactoTest() {
+		
+	}
+	
+	@Test
+	public void eliminarContactoTest() {
+		
+	}
+	
+	@Test
+	public void modificarContactoTest() {
+		
+	}
+	
+	public void obtenerContactosTest() {
+		
+	}
 }
