@@ -86,7 +86,7 @@ public class Vista
 		panel.add(btnReporte);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(20, 0, 197, 21);
+		menuBar.setBounds(0, 0, 197, 21);
 		panel.add(menuBar);
 		
 		JMenu mnAgregar = new JMenu("Agregar");

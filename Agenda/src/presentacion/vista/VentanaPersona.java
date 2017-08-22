@@ -84,9 +84,7 @@ public class VentanaPersona extends JFrame
 			btnAgregarPersona = new JButton("Agregar");
 			btnAgregarPersona.addActionListener(this.controlador);
 			btnAgregarPersona.setBounds(452, 326, 107, 25);
-			panel.add(btnAgregarPersona);
-			
-			
+			panel.add(btnAgregarPersona);						
 		}
 		
 		textTelefono = new JTextField();
