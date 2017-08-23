@@ -60,26 +60,38 @@ public class Agenda
 	
 	void validarPersona(PersonaDTO persona) {
 		
-		if(persona.getNombre().trim().equals("")) {
+		if(persona.getNombre().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Nombre.");
 		}
-		if(persona.getApellido().trim().equals("")) {
+		if(persona.getNombre().length() > 45) {
+			throw new IllegalArgumentException("El Nombre puede tener hasta 45 caracteres.");
+		}
+		if(persona.getApellido().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Apellido.");
-		}		
-		if(persona.getTelefono().trim().equals("")) {
+		}
+		if(persona.getApellido().length() > 45) {
+			throw new IllegalArgumentException("El Apellido puede tener hasta 45 caracteres.");
+		}
+		if(persona.getTelefono().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Teléfono.");
 		}
-		if(persona.getLocalidad() == null || persona.getLocalidad().getLocalidad().equals("")) {
+		if(persona.getTelefono().length() > 20) {
+			throw new IllegalArgumentException("El Telefono puede tener hasta 20 caracteres.");
+		}
+		if(persona.getLocalidad() == null || persona.getLocalidad().getLocalidad().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Localidad.");
 		}
-		if(persona.getTipocontacto() == null || persona.getTipocontacto().getTipoContacto().equals("")) {
+		if(persona.getTipocontacto() == null || persona.getTipocontacto().getTipoContacto().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Tipo de contacto.");
 		}
 		if(persona.getFechanac() == null) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
-		}			
-		if(persona.getMail().trim().length() > 0 && !mailValido(persona.getMail())) {
-			throw new IllegalArgumentException("El mail no tiene un formato valido.");
+		}	
+		if(persona.getMail().length() > 50) {
+			throw new IllegalArgumentException("El Mail puede tener hasta 50 caracteres.");
+		}
+		if(!persona.getMail().trim().isEmpty() && !mailValido(persona.getMail())) {
+			throw new IllegalArgumentException("El Mail no tiene un formato valido.");
 		}
 	}
 
