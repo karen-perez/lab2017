@@ -106,9 +106,6 @@
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="7" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="33" splitType="Stretch">
 			<textField>
@@ -123,4 +120,24 @@
 			</textField>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="209" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="23" y="16" width="486" height="180" uuid="c536fa0b-1a27-4d67-8e15-6ffdabc93d0a"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{telefono}]]></keyExpression>
+					<valueExpression><![CDATA[$V{localidad1}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
 </jasperReport>
