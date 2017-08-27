@@ -15,6 +15,7 @@
 	<field name="localidad" class="dto.LocalidadDTO">
 		<fieldDescription><![CDATA[localidad]]></fieldDescription>
 	</field>
+	<sortField name="localidad"/>
 	<variable name="localidad1" class="java.lang.Integer" resetType="Group" resetGroup="grupoLocalidades" calculation="Count">
 		<variableExpression><![CDATA[$F{localidad}]]></variableExpression>
 	</variable>
@@ -124,16 +125,16 @@
 		<band height="209" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="23" y="16" width="486" height="180" uuid="c536fa0b-1a27-4d67-8e15-6ffdabc93d0a"/>
+					<reportElement x="23" y="16" width="486" height="180" uuid="1e34d4ce-9fa3-4f6f-afb0-b9b440fa4f88"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{telefono}]]></keyExpression>
+					<keyExpression><![CDATA[$F{localidad}]]></keyExpression>
 					<valueExpression><![CDATA[$V{localidad1}]]></valueExpression>
 				</pieDataset>
-				<piePlot>
+				<piePlot labelFormat="{2}" legendLabelFormat="{0}">
 					<plot/>
 					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
 				</piePlot>

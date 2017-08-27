@@ -1,7 +1,6 @@
 package persistencia.dao.interfaz;
 
 import java.util.List;
-
 import dto.PersonaDTO;
 
 public interface PersonaDAO 
@@ -18,5 +17,5 @@ public interface PersonaDAO
 
 	public int cantidadLocalidad(int id);
 	public int cantidadTipoContacto(int id);
-
+	
 }

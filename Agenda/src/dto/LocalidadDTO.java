@@ -1,6 +1,6 @@
 package dto;
 
-public class LocalidadDTO {
+public class LocalidadDTO implements Comparable<LocalidadDTO> {
 private int idLocalidad;
 private String localidad;
 
@@ -61,6 +61,14 @@ public boolean equals(Object obj) {
 	if (idLocalidad != other.idLocalidad)
 		return false;	
 	return true;
+}
+
+
+@Override
+public int compareTo(LocalidadDTO other) {
+	// TODO Auto-generated method stub
+	int last = this.localidad.compareTo(other.localidad);
+    return last == 0 ? this.localidad.compareTo(other.localidad) : last;
 }
 
 

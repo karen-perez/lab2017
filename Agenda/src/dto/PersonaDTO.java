@@ -17,12 +17,9 @@ public class PersonaDTO
 	private TipoContactoDTO tipocontacto;
 	private Date fechanac;
 	
-	
-	
 
 	public PersonaDTO(int idPersona, String nombre, String apellido, String telefono, String mail,
-			Date fechanac, String calle, String altura, String piso, String depto, LocalidadDTO localidad, TipoContactoDTO tipocontacto
-			)
+			Date fechanac, String calle, String altura, String piso, String depto, LocalidadDTO localidad, TipoContactoDTO tipocontacto)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -158,4 +155,5 @@ public class PersonaDTO
 	public void setFechanac(Date fechanac) {
 		this.fechanac = fechanac;
 	}
+	
 }

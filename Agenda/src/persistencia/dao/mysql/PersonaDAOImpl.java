@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
@@ -24,7 +23,7 @@ public class PersonaDAOImpl implements PersonaDAO
 	private static final String localidad="SELECT * FROM personas WHERE idlocalidad=?";
 	private static final String localidad2="SELECT COUNT(*) FROM personas WHERE idlocalidad=?";
 	private static final String tipoContacto="SELECT COUNT(*) FROM personas WHERE IdContacto=?";
-
+	
 	private static final Conexion conexion = Conexion.getConexion();
 	
 	public boolean insert(PersonaDTO persona)
@@ -251,6 +250,5 @@ public class PersonaDAOImpl implements PersonaDAO
 		     return cantidad;   
 			
 		}
-
-
+			
 }
