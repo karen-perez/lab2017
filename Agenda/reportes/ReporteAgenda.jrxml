@@ -22,19 +22,26 @@
 	<group name="grupoLocalidades">
 		<groupExpression><![CDATA[$F{localidad}]]></groupExpression>
 		<groupHeader>
-			<band height="32">
+			<band height="24">
+				<rectangle>
+					<reportElement x="-3" y="0" width="560" height="20" backcolor="#05FA84" uuid="8fcbfa81-5778-464d-af89-4b2491aaa1ea"/>
+				</rectangle>
 				<textField>
-					<reportElement x="20" y="0" width="100" height="30" uuid="9a99fd60-161f-46e9-8b3b-ef27e1f94f2b"/>
+					<reportElement x="20" y="0" width="100" height="20" uuid="9a99fd60-161f-46e9-8b3b-ef27e1f94f2b"/>
 					<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="55">
+			<band height="37">
 				<textField>
-					<reportElement x="397" y="25" width="100" height="30" uuid="10ebe924-5890-497b-8ae1-be9c9d443a8d"/>
+					<reportElement x="397" y="7" width="100" height="20" uuid="10ebe924-5890-497b-8ae1-be9c9d443a8d"/>
 					<textFieldExpression><![CDATA[$V{localidad1}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="363" y="7" width="30" height="20" uuid="dd5f7314-2e21-4419-9fba-eb489c3f8f38"/>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
 			</band>
 		</groupFooter>
 	</group>
@@ -69,7 +76,7 @@
 				<reportElement x="0" y="4" width="550" height="24" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
 				<staticText>
 					<reportElement x="3" y="2" width="160" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
-					<text><![CDATA[Reporte para el ejemplo Agenda]]></text>
+					<text><![CDATA[Listado de personas registradas]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -79,14 +86,14 @@
 			<frame>
 				<reportElement x="2" y="6" width="550" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
-					<reportElement x="-13" y="-1" width="280" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
+					<reportElement x="-13" y="-1" width="181" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<text><![CDATA[Nombre y apellido]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="253" y="1" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<reportElement x="168" y="1" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
@@ -96,13 +103,16 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="89" splitType="Stretch">
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-4" y="4" width="558" height="20" backcolor="#EBDADA" uuid="90605e33-988c-433c-98e5-497438c620df"/>
+			</rectangle>
 			<textField>
-				<reportElement x="0" y="30" width="225" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
+				<reportElement x="2" y="10" width="150" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="24" width="100" height="30" uuid="c8fe5536-a7fa-4cc5-bae7-8dce86f6d1a5"/>
+				<reportElement x="150" y="10" width="100" height="14" uuid="c8fe5536-a7fa-4cc5-bae7-8dce86f6d1a5"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 		</band>
