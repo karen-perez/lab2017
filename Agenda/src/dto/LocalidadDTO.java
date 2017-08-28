@@ -66,7 +66,6 @@ public boolean equals(Object obj) {
 
 @Override
 public int compareTo(LocalidadDTO other) {
-	// TODO Auto-generated method stub
 	int last = this.localidad.compareTo(other.localidad);
     return last == 0 ? this.localidad.compareTo(other.localidad) : last;
 }
