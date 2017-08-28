@@ -188,12 +188,13 @@
 		<band height="209" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="23" y="16" width="486" height="180" uuid="eddff812-24b6-440f-8e8a-c1782b1b5bf9"/>
+					<reportElement x="23" y="16" width="486" height="180" uuid="5151ea1d-fa5d-448c-bf43-047aa36229ea"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
+					<dataset incrementType="Group" incrementGroup="grupoLocalidades"/>
 					<keyExpression><![CDATA[$F{localidad}.getLocalidad()]]></keyExpression>
 					<valueExpression><![CDATA[$V{localidad1}]]></valueExpression>
 				</pieDataset>
