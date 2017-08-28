@@ -29,26 +29,26 @@
 	<group name="grupoLocalidades">
 		<groupExpression><![CDATA[$F{localidad}]]></groupExpression>
 		<groupHeader>
-			<band height="32">
+			<band height="36">
+				<rectangle>
+					<reportElement x="0" y="2" width="555" height="30" backcolor="#F5C2A9" uuid="02a39554-29b6-4cf4-8b42-d84480e57420"/>
+				</rectangle>
 				<textField>
-					<reportElement x="-10" y="0" width="565" height="30" forecolor="#AA5CE6" backcolor="#6E6868" uuid="9a99fd60-161f-46e9-8b3b-ef27e1f94f2b"/>
+					<reportElement x="0" y="2" width="555" height="30" forecolor="#1D1821" backcolor="#F09492" uuid="9a99fd60-161f-46e9-8b3b-ef27e1f94f2b"/>
 					<box>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<pen lineWidth="1.0"/>
 					</box>
-					<textElement>
-						<font isBold="true" isUnderline="false"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true" isUnderline="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="61">
+			<band height="95">
 				<textField>
-					<reportElement x="452" y="25" width="100" height="30" uuid="10ebe924-5890-497b-8ae1-be9c9d443a8d"/>
+					<reportElement x="500" y="40" width="66" height="30" uuid="10ebe924-5890-497b-8ae1-be9c9d443a8d"/>
 					<box>
 						<pen lineWidth="1.0" lineStyle="Solid"/>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -57,17 +57,36 @@
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font isUnderline="true"/>
+						<font isBold="true" isItalic="true" isUnderline="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{localidad1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="352" y="25" width="113" height="30" uuid="6ffcf8dc-0a16-4326-a0da-fdf4ccc78a03"/>
+					<reportElement x="400" y="40" width="113" height="30" uuid="6ffcf8dc-0a16-4326-a0da-fdf4ccc78a03"/>
 					<textElement>
-						<font size="11"/>
+						<font size="11" isBold="true" isItalic="true"/>
 					</textElement>
 					<text><![CDATA[Cant por localidad:]]></text>
 				</staticText>
+				<rectangle>
+					<reportElement x="2" y="7" width="555" height="30" backcolor="#A2C7FA" uuid="a27975f4-b667-4c7c-af58-ba4024db9818"/>
+				</rectangle>
+				<textField>
+					<reportElement x="2" y="14" width="120" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="112" y="14" width="110" height="18" uuid="08f944a0-4d92-4e49-96a0-7a2314ee5e59"/>
+					<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="222" y="14" width="120" height="18" uuid="c8fe5536-a7fa-4cc5-bae7-8dce86f6d1a5"/>
+					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="332" y="14" width="110" height="18" uuid="32275bea-3c78-4a48-9ff1-104898d9d726"/>
+					<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -75,13 +94,13 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="45" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<frame>
 				<reportElement x="0" y="0" width="550" height="40" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
-					<reportElement x="0" y="10" width="170" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
-					<textElement>
-						<font size="18"/>
+					<reportElement x="180" y="10" width="170" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<textElement verticalAlignment="Justified" markup="none">
+						<font fontName="SansSerif" size="18" isUnderline="true"/>
 					</textElement>
 					<text><![CDATA[Reporte de personas]]></text>
 				</staticText>
@@ -101,8 +120,11 @@
 			<frame>
 				<reportElement x="0" y="4" width="550" height="24" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
 				<staticText>
-					<reportElement x="3" y="2" width="160" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
-					<text><![CDATA[Reporte para el ejemplo Agenda]]></text>
+					<reportElement x="10" y="0" width="390" height="20" uuid="9ce47d38-4a61-45a7-8943-f66ff8236867"/>
+					<textElement>
+						<font size="14" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Listado de personas por Localidad]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -142,35 +164,15 @@
 			</frame>
 		</band>
 	</columnHeader>
-	<detail>
-		<band height="89" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="30" width="120" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="220" y="30" width="120" height="18" uuid="c8fe5536-a7fa-4cc5-bae7-8dce86f6d1a5"/>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="110" y="30" width="110" height="18" uuid="08f944a0-4d92-4e49-96a0-7a2314ee5e59"/>
-				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="330" y="30" width="110" height="18" uuid="32275bea-3c78-4a48-9ff1-104898d9d726"/>
-				<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
 	<pageFooter>
 		<band height="33" splitType="Stretch">
 			<textField>
-				<reportElement x="355" y="0" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
+				<reportElement x="434" y="0" width="65" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="455" y="0" width="100" height="30" uuid="52b869cb-a151-48f6-ad3c-3147a8d111e8"/>
+				<reportElement x="474" y="0" width="100" height="30" uuid="52b869cb-a151-48f6-ad3c-3147a8d111e8"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -180,13 +182,13 @@
 		<band height="209" splitType="Stretch">
 			<pieChart>
 				<chart>
-					<reportElement x="23" y="16" width="486" height="180" uuid="c536fa0b-1a27-4d67-8e15-6ffdabc93d0a"/>
+					<reportElement x="23" y="16" width="486" height="180" uuid="eddff812-24b6-440f-8e8a-c1782b1b5bf9"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{telefono}]]></keyExpression>
+					<keyExpression><![CDATA[$F{localidad}.getLocalidad()]]></keyExpression>
 					<valueExpression><![CDATA[$V{localidad1}]]></valueExpression>
 				</pieDataset>
 				<piePlot>
@@ -194,6 +196,13 @@
 					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
 				</piePlot>
 			</pieChart>
+			<staticText>
+				<reportElement x="30" y="10" width="131" height="49" uuid="d014adb5-8387-4887-9e8b-6962f473509f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de contactos por localidad]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
