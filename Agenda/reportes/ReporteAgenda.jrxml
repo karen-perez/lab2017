@@ -14,15 +14,13 @@
 	<field name="nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
-	<field name="localidad" class="dto.LocalidadDTO">
-		<fieldDescription><![CDATA[localidad]]></fieldDescription>
-	</field>
 	<field name="mail" class="java.lang.String">
 		<fieldDescription><![CDATA[mail]]></fieldDescription>
 	</field>
 	<field name="apellido" class="java.lang.String">
 		<fieldDescription><![CDATA[apellido]]></fieldDescription>
 	</field>
+	<field name="localidad" class="dto.LocalidadDTO"/>
 	<sortField name="localidad"/>
 	<sortField name="apellido"/>
 	<variable name="localidad1" class="java.lang.Integer" resetType="Group" resetGroup="grupoLocalidades" calculation="Count">
