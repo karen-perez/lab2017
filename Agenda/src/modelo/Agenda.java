@@ -63,20 +63,11 @@ public class Agenda
 		if(persona.getNombre().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Nombre.");
 		}
-		if(persona.getNombre().length() > 45) {
-			throw new IllegalArgumentException("El Nombre puede tener hasta 45 caracteres.");
-		}
 		if(persona.getApellido().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Apellido.");
 		}
-		if(persona.getApellido().length() > 45) {
-			throw new IllegalArgumentException("El Apellido puede tener hasta 45 caracteres.");
-		}
 		if(persona.getTelefono().trim().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener un Teléfono.");
-		}
-		if(persona.getTelefono().length() > 20) {
-			throw new IllegalArgumentException("El Telefono puede tener hasta 20 caracteres.");
 		}
 		if(persona.getLocalidad() == null || persona.getLocalidad().getLocalidad().isEmpty()) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Localidad.");
@@ -87,6 +78,28 @@ public class Agenda
 		if(persona.getFechanac() == null) {
 			throw new IllegalArgumentException("El contacto tiene que tener una Fecha de Nacimiento.");
 		}	
+		
+		if(persona.getNombre().length() > 45) {
+			throw new IllegalArgumentException("El Nombre puede tener hasta 45 caracteres.");
+		}
+		if(persona.getApellido().length() > 45) {
+			throw new IllegalArgumentException("El Apellido puede tener hasta 45 caracteres.");
+		}
+		if(persona.getTelefono().length() > 20) {
+			throw new IllegalArgumentException("El Telefono puede tener hasta 20 caracteres.");
+		}
+		if(persona.getCalle().length() > 50) {
+			throw new IllegalArgumentException("La Calle puede tener hasta 50 caracteres.");
+		}
+		if(persona.getAltura().length() > 8) {
+			throw new IllegalArgumentException("La Altura puede tener hasta 8 caracteres.");
+		}
+		if(persona.getPiso().length() > 3) {
+			throw new IllegalArgumentException("El Piso puede tener hasta 3 caracteres.");
+		}
+		if(persona.getDepto().length() > 3) {
+			throw new IllegalArgumentException("El Depto. puede tener hasta 3 caracteres.");
+		}
 		if(persona.getMail().length() > 50) {
 			throw new IllegalArgumentException("El Mail puede tener hasta 50 caracteres.");
 		}

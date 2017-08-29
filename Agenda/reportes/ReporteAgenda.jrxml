@@ -148,7 +148,7 @@
 	<detail>
 		<band height="50">
 			<rectangle>
-				<reportElement x="-2" y="10" width="555" height="30" backcolor="#A2C7FA" uuid="a27975f4-b667-4c7c-af58-ba4024db9818"/>
+				<reportElement x="0" y="10" width="555" height="30" backcolor="#A2C7FA" uuid="a27975f4-b667-4c7c-af58-ba4024db9818"/>
 			</rectangle>
 			<textField>
 				<reportElement x="105" y="16" width="120" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
