@@ -1,1 +1,1 @@
-{"puerto":"3306","pass":"root","ip":"localhost","usuario":"root","primerIngreso":false}
+{"puerto":"3306","usuario":"root","pass":"root","primerIngreso":false,"ip":"localhost"}
