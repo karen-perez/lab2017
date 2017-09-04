@@ -181,7 +181,7 @@
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="313" y="11" width="110" height="18" uuid="32275bea-3c78-4a48-9ff1-104898d9d726"/>
+				<reportElement x="297" y="11" width="110" height="18" uuid="32275bea-3c78-4a48-9ff1-104898d9d726"/>
 				<textFieldExpression><![CDATA[$F{mail}]]></textFieldExpression>
 			</textField>
 			<textField>

@@ -4,12 +4,22 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import modelo.Agenda;
+import persistencia.conexion.Conexion;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.vista.VentanaConexion;
 import presentacion.vista.VentanaEliminarLoc;
 import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaModificar;
@@ -59,10 +69,69 @@ public class Controlador implements ActionListener {
 	}
 
 	public void inicializar() {
-		this.llenarTabla();
+		if(!leerArchivo())
+		{
+		VentanaConexion ventanaConexion = new VentanaConexion();
+		ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
+		}
+		else
+		{
+		
+		
+	this.llenarTabla();
+		}
+	}
+	
+	
+	boolean leerArchivo()
+	{
+	JSONParser parser = new JSONParser();
+	boolean ret=false;
+	try {
+
+	    Object obj = parser.parse(new FileReader(System.getProperty("user.home")+"\\infoconex.json"));
+
+	    JSONObject jsonObject = (JSONObject) obj;
+	    System.out.println(jsonObject);
+
+	    String ip = (String) jsonObject.get("ip");
+	    System.out.println(ip);
+	    String puerto = (String) jsonObject.get("puerto");
+	    System.out.println(puerto);
+	    String usuario = (String) jsonObject.get("usuario");
+	    System.out.println(usuario);
+	    String pass = (String) jsonObject.get("pass");
+	    System.out.println(pass);
+
+	  /*  // loop array
+	    JSONArray msg = (JSONArray) jsonObject.get("messages");
+	    Iterator<String> iterator = msg.iterator();
+	    while (iterator.hasNext()) {
+	        System.out.println(iterator.next());
+	    }*/
+	    		
+	    		
+	  if(Conexion.getConexion().ConexionAuto(puerto, ip,usuario, pass))
+						{
+	    			ret=true;
+						}
+
+	    
+
+	} catch (FileNotFoundException e) {
+	    //e.printStackTrace();
+	} catch (IOException e) {
+	    //e.printStackTrace();
+	} catch (ParseException e) {
+	    //e.printStackTrace();
+	}
+	return ret;
 	}
 
-	private void llenarTabla() {
+
+
+
+	public void llenarTabla() {
 		this.vista.getModelPersonas().setRowCount(0); // Para vaciar la tabla
 		this.vista.getModelPersonas().setColumnCount(0);
 		this.vista.getModelPersonas().setColumnIdentifiers(
@@ -107,6 +176,13 @@ public class Controlador implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==this.vista.getBtnConexion())
+		{
+			VentanaConexion ventanaConexion = new VentanaConexion();
+			ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
+		}
+		
 		// aca se abre el menu de agregar o presionando el boton de agregar,
 		// ambos abren la ventana para agregar un nuevo contacto
 		if (e.getSource() == this.vista.getBtnAgregar()

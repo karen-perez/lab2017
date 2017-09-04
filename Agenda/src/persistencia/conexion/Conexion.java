@@ -20,6 +20,23 @@ public class Conexion
 			System.out.println("Conexion fallida");
 		}
 	}
+	public boolean ConexionAuto(String puerto, String ip , String usu, String pw)
+	{
+		try
+		{
+			conexion = DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/agenda",usu,pw);
+			
+	
+			return true;
+ 
+		}
+		catch(Exception e)
+		{
+			System.out.println("Conexion fallida");
+			return false;
+		}
+	}
+
 	
 	public static Conexion getConexion()   
 	{								

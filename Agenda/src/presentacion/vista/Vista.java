@@ -5,6 +5,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -33,6 +36,7 @@ public class Vista
 	private JMenuItem mntmContacto_2;
 	private JMenuItem mntmLocalidad_2;
 	private JMenuItem mntmTipoDeContacto_2 ;
+	private JButton btnConexion;
 
 	
 
@@ -124,6 +128,12 @@ public class Vista
 		
 		mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
 		mnEliminar.add(mntmTipoDeContacto_2);
+		
+		btnConexion = new JButton("Conexion");
+		btnConexion.setBackground(Color.MAGENTA);
+		btnConexion.setBounds(544, 227, 97, 24);
+		panel.add(btnConexion);
+
 	}
 	
 	public void show()
@@ -298,5 +308,15 @@ public class Vista
 	public JFrame getFrame() {
 		return frame;
 	}
+	
+	public JButton getBtnConexion() {
+		return btnConexion;
+	}
+
+
+	public void setBtnConexion(JButton btnConexion) {
+		this.btnConexion = btnConexion;
+	}
+
 	
 }

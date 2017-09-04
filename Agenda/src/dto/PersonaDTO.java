@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class PersonaDTO 
 {
@@ -155,5 +156,7 @@ public class PersonaDTO
 	public void setFechanac(Date fechanac) {
 		this.fechanac = fechanac;
 	}
+	
+	
 	
 }
