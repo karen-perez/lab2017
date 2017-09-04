@@ -94,10 +94,10 @@ public void escribir(String puerto, String ip, String usu, String pw ) {
     obj.put("puerto", puerto);
     obj.put("usuario", usu);
     obj.put("pass", pw);
-
+    obj.put("primerIngreso", false);
   
 
-    try (FileWriter file = new FileWriter(System.getProperty("user.home")+"\\infoconex.json"))
+    try (FileWriter file = new FileWriter("./test.json"))
     		{
 
         file.write(obj.toJSONString());

@@ -89,7 +89,7 @@ public class Controlador implements ActionListener {
 	boolean ret=false;
 	try {
 
-	    Object obj = parser.parse(new FileReader(System.getProperty("user.home")+"\\infoconex.json"));
+	    Object obj = parser.parse(new FileReader("./test.json"));
 
 	    JSONObject jsonObject = (JSONObject) obj;
 	    System.out.println(jsonObject);
@@ -102,7 +102,11 @@ public class Controlador implements ActionListener {
 	    System.out.println(usuario);
 	    String pass = (String) jsonObject.get("pass");
 	    System.out.println(pass);
-
+	    Boolean primerIngreso = (Boolean) jsonObject.get("primerIngreso");
+	    System.out.println(primerIngreso);
+	    
+	    
+	    
 	  /*  // loop array
 	    JSONArray msg = (JSONArray) jsonObject.get("messages");
 	    Iterator<String> iterator = msg.iterator();
@@ -111,7 +115,7 @@ public class Controlador implements ActionListener {
 	    }*/
 	    		
 	    		
-	  if(Conexion.getConexion().ConexionAuto(puerto, ip,usuario, pass))
+	  if(!primerIngreso && Conexion.getConexion().ConexionAuto(puerto, ip,usuario, pass))
 						{
 	    			ret=true;
 						}
@@ -119,7 +123,7 @@ public class Controlador implements ActionListener {
 	    
 
 	} catch (FileNotFoundException e) {
-	    //e.printStackTrace();
+	    e.printStackTrace();
 	} catch (IOException e) {
 	    //e.printStackTrace();
 	} catch (ParseException e) {

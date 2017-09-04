@@ -24,7 +24,7 @@ public class Conexion
 	{
 		try
 		{
-			conexion = DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/agenda",usu,pw);
+			conexion = DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/tpi_g6",usu,pw);
 			
 	
 			return true;
