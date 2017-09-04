@@ -39,6 +39,7 @@ public class Controlador implements ActionListener {
 	private VentanaTipoContacto ventanaTipoContacto;
 	private VentanaEliminarLoc ventanaEliminarLoc;
 	private VentanaModificar ventanaModificar;
+	private VentanaConexion ventanaConexion;
 
 	public Controlador(Vista vista, Agenda agenda) {
 		this.vista = vista;
@@ -63,6 +64,9 @@ public class Controlador implements ActionListener {
 		this.vista.getMntmContacto_2().addActionListener(this);
 		this.vista.getMntmLocalidad_2().addActionListener(this);
 		this.vista.getMntmTipoDeContacto_2().addActionListener(this);
+		
+		//configuracion
+		this.vista.getMntmBaseDatos().addActionListener(this);
 
 		this.agenda = agenda;
 		this.personas_en_tabla = null;
@@ -71,7 +75,7 @@ public class Controlador implements ActionListener {
 	public void inicializar() {
 		if(!leerArchivo())
 		{
-		VentanaConexion ventanaConexion = new VentanaConexion();
+		this.ventanaConexion = new VentanaConexion();
 		ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
 		}
 		else
@@ -181,15 +185,15 @@ public class Controlador implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()==this.vista.getBtnConexion())
+		if(e.getSource()==this.vista.getMntmBaseDatos())
 		{
-			VentanaConexion ventanaConexion = new VentanaConexion();
+			this.ventanaConexion = new VentanaConexion();
 			ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
 		}
 		
 		// aca se abre el menu de agregar o presionando el boton de agregar,
 		// ambos abren la ventana para agregar un nuevo contacto
-		if (e.getSource() == this.vista.getBtnAgregar()
+		else if (e.getSource() == this.vista.getBtnAgregar()
 				|| e.getSource() == this.vista.getMntmContacto()) {
 			abrirVentanaPersona(null);
 

@@ -5,9 +5,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.Color;
-
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -27,6 +24,7 @@ public class Vista
 	private JMenu mnAgregar;	
 	private JMenu mnModificar;
 	private JMenu mnEliminar;
+	private JMenu mnConfiguracion;
 	private JMenuItem mntmContacto;
 	private JMenuItem mntmLocalidad;
 	private JMenuItem mntmTipoDeContacto;
@@ -36,8 +34,7 @@ public class Vista
 	private JMenuItem mntmContacto_2;
 	private JMenuItem mntmLocalidad_2;
 	private JMenuItem mntmTipoDeContacto_2 ;
-	private JButton btnConexion;
-
+	private JMenuItem mntmBaseDatos;
 	
 
 	public Vista() 
@@ -90,7 +87,7 @@ public class Vista
 		panel.add(btnReporte);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 197, 21);
+		menuBar.setBounds(0, 0, 300, 21);
 		panel.add(menuBar);
 		
 		JMenu mnAgregar = new JMenu("Agregar");
@@ -120,6 +117,7 @@ public class Vista
 		mnEliminar = new JMenu("Eliminar");
 		menuBar.add(mnEliminar);
 		
+		
 		mntmContacto_2 = new JMenuItem("Contacto");
 		mnEliminar.add(mntmContacto_2);
 		
@@ -129,10 +127,12 @@ public class Vista
 		mntmTipoDeContacto_2 = new JMenuItem("Tipo de contacto");
 		mnEliminar.add(mntmTipoDeContacto_2);
 		
-		btnConexion = new JButton("Conexion");
-		btnConexion.setBackground(Color.MAGENTA);
-		btnConexion.setBounds(544, 227, 97, 24);
-		panel.add(btnConexion);
+
+		mnConfiguracion = new JMenu("Configuracion");
+		menuBar.add(mnConfiguracion);
+		
+		mntmBaseDatos = new JMenuItem("Base de Datos");
+		mnConfiguracion.add(mntmBaseDatos);
 
 	}
 	
@@ -309,14 +309,21 @@ public class Vista
 		return frame;
 	}
 	
-	public JButton getBtnConexion() {
-		return btnConexion;
+	public JMenu getMnConexion() {
+		return mnConfiguracion;
 	}
 
 
-	public void setBtnConexion(JButton btnConexion) {
-		this.btnConexion = btnConexion;
+	public void setMnConexion(JMenu mnConfiguracion) {
+		this.mnConfiguracion = mnConfiguracion;
 	}
-
 	
+	public JMenuItem getMntmBaseDatos() {
+		return mntmBaseDatos;
+	}
+
+
+	public void setMntmBaseDatos(JMenuItem mntmBaseDatos) {
+		this.mntmBaseDatos = mntmBaseDatos;
+	}
 }
