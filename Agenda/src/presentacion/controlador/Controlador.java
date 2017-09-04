@@ -64,8 +64,8 @@ public class Controlador implements ActionListener {
 		this.vista.getMntmContacto_2().addActionListener(this);
 		this.vista.getMntmLocalidad_2().addActionListener(this);
 		this.vista.getMntmTipoDeContacto_2().addActionListener(this);
-		
-		//configuracion
+
+		// configuracion
 		this.vista.getMntmBaseDatos().addActionListener(this);
 
 		this.agenda = agenda;
@@ -73,71 +73,59 @@ public class Controlador implements ActionListener {
 	}
 
 	public void inicializar() {
-		if(!leerArchivo())
-		{
-		this.ventanaConexion = new VentanaConexion();
-		ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
-		}
-		else
-		{
-		
-		
-	this.llenarTabla();
+		if (!leerArchivo()) {
+			this.ventanaConexion = new VentanaConexion();
+			ControladorInicioConex controladorConex = new ControladorInicioConex(
+					ventanaConexion, this);
+		} else {
+
+			this.llenarTabla();
 		}
 	}
-	
-	
-	boolean leerArchivo()
-	{
-	JSONParser parser = new JSONParser();
-	boolean ret=false;
-	try {
 
-	    Object obj = parser.parse(new FileReader("./test.json"));
+	boolean leerArchivo() {
+		JSONParser parser = new JSONParser();
+		boolean ret = false;
+		try {
 
-	    JSONObject jsonObject = (JSONObject) obj;
-	    System.out.println(jsonObject);
+			Object obj = parser.parse(new FileReader("./test.json"));
 
-	    String ip = (String) jsonObject.get("ip");
-	    System.out.println(ip);
-	    String puerto = (String) jsonObject.get("puerto");
-	    System.out.println(puerto);
-	    String usuario = (String) jsonObject.get("usuario");
-	    System.out.println(usuario);
-	    String pass = (String) jsonObject.get("pass");
-	    System.out.println(pass);
-	    Boolean primerIngreso = (Boolean) jsonObject.get("primerIngreso");
-	    System.out.println(primerIngreso);
-	    
-	    
-	    
-	  /*  // loop array
-	    JSONArray msg = (JSONArray) jsonObject.get("messages");
-	    Iterator<String> iterator = msg.iterator();
-	    while (iterator.hasNext()) {
-	        System.out.println(iterator.next());
-	    }*/
-	    		
-	    		
-	  if(!primerIngreso && Conexion.getConexion().ConexionAuto(puerto, ip,usuario, pass))
-						{
-	    			ret=true;
-						}
+			JSONObject jsonObject = (JSONObject) obj;
+			System.out.println(jsonObject);
 
-	    
+			String ip = (String) jsonObject.get("ip");
+			System.out.println(ip);
+			String puerto = (String) jsonObject.get("puerto");
+			System.out.println(puerto);
+			String usuario = (String) jsonObject.get("usuario");
+			System.out.println(usuario);
+			String pass = (String) jsonObject.get("pass");
+			System.out.println(pass);
+			Boolean primerIngreso = (Boolean) jsonObject.get("primerIngreso");
+			System.out.println(primerIngreso);
 
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    //e.printStackTrace();
-	} catch (ParseException e) {
-	    //e.printStackTrace();
+			/*
+			 * // loop array JSONArray msg = (JSONArray)
+			 * jsonObject.get("messages"); Iterator<String> iterator =
+			 * msg.iterator(); while (iterator.hasNext()) {
+			 * System.out.println(iterator.next()); }
+			 */
+
+			if (!primerIngreso
+					&& Conexion.getConexion().ConexionAuto(puerto, ip, usuario,
+							pass)) {
+				ret = true;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// e.printStackTrace();
+		} catch (ParseException e) {
+			// e.printStackTrace();
+		}
+		return ret;
 	}
-	return ret;
-	}
-
-
-
 
 	public void llenarTabla() {
 		this.vista.getModelPersonas().setRowCount(0); // Para vaciar la tabla
@@ -154,9 +142,8 @@ public class Controlador implements ActionListener {
 					 * this.personas_en_tabla.get(i).getCalle(),
 					 * this.personas_en_tabla.get(i).getAltura(),
 					 * this.personas_en_tabla.get(i).getPiso(),
-					 * this.personas_en_tabla.get(i).getDepto(),
-					 * this.personas_en_tabla.get(i).getLocalidad(),
-					 */
+					 * this.personas_en_tabla.get(i).getDepto(),*/
+					this.personas_en_tabla.get(i).getLocalidad(),				
 					this.personas_en_tabla.get(i).getMail(),
 					this.personas_en_tabla.get(i).getTipocontacto(),
 					this.personas_en_tabla.get(i).getFechanac(), };
@@ -184,13 +171,13 @@ public class Controlador implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource()==this.vista.getMntmBaseDatos())
-		{
+
+		if (e.getSource() == this.vista.getMntmBaseDatos()) {
 			this.ventanaConexion = new VentanaConexion();
-			ControladorInicioConex controladorConex = new ControladorInicioConex(ventanaConexion, this);
+			ControladorInicioConex controladorConex = new ControladorInicioConex(
+					ventanaConexion, this);
 		}
-		
+
 		// aca se abre el menu de agregar o presionando el boton de agregar,
 		// ambos abren la ventana para agregar un nuevo contacto
 		else if (e.getSource() == this.vista.getBtnAgregar()
@@ -463,20 +450,20 @@ public class Controlador implements ActionListener {
 					if ((cantidad == 0)) {
 						this.agenda
 								.borrarTipoContacto(((TipoContactoDTO) ventanaEliminarLoc
-										.getComboBoxEliminar().getSelectedItem())
-										.getIdTipoContacto());
+										.getComboBoxEliminar()
+										.getSelectedItem()).getIdTipoContacto());
 						setExitoMsj((ventanaEliminarLoc.getComboBoxEliminar()
 								.getSelectedItem()).toString()
 								+ " fue eliminada correctamente.");
 						this.llenarTabla();
-	
+
 					} else {
 						setWarningMsj(
 								this.ventanaEliminarLoc,
 								(ventanaEliminarLoc.getComboBoxEliminar()
 										.getSelectedItem()).toString()
 										+ " no se puede eliminar ya que se encuentra en uso.");
-	
+
 					}
 				}
 			}

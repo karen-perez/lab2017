@@ -29,6 +29,8 @@ public class ControladorInicioConex implements ActionListener {
 		this.ctrl = contr;
 
 		this.ventanaConexion.getBtnAceptar().addActionListener(this);
+		
+		this.leerArchivo();
 
 	}
 
@@ -111,6 +113,11 @@ public class ControladorInicioConex implements ActionListener {
 			String pass = (String) jsonObject.get("pass");
 			System.out.println(pass);
 
+			this.ventanaConexion.getTxtPuerto().setText(puerto);
+			this.ventanaConexion.getTxtIP().setText(ip);
+			this.ventanaConexion.getTxtUsuario().setText(usuario);
+			this.ventanaConexion.getTextPass().setText(pass);
+			
 			/*
 			 * // loop array JSONArray msg = (JSONArray)
 			 * jsonObject.get("messages"); Iterator<String> iterator =
