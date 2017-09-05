@@ -112,11 +112,17 @@ public class ControladorInicioConex implements ActionListener {
 			System.out.println(usuario);
 			String pass = (String) jsonObject.get("pass");
 			System.out.println(pass);
-
+			Boolean primerIngreso = (Boolean) jsonObject.get("primerIngreso");
+			System.out.println(primerIngreso);
+			
 			this.ventanaConexion.getTxtPuerto().setText(puerto);
 			this.ventanaConexion.getTxtIP().setText(ip);
 			this.ventanaConexion.getTxtUsuario().setText(usuario);
 			this.ventanaConexion.getTextPass().setText(pass);
+			
+			if(primerIngreso) {
+				Runtime.getRuntime().exec("cmd /c start bd.bat");
+			}
 			
 			/*
 			 * // loop array JSONArray msg = (JSONArray)
